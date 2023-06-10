@@ -1,7 +1,9 @@
 /* all sides */
 .elevenPx {
+  border-style: solid;
   border-radius: 11px;
 }
 .fivePx {
+  border-style: solid;
   border-radius: 5px;
 }
