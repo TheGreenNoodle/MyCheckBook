@@ -1,5 +1,6 @@
 .black {
   background-color: black;
+  border-color: black;
 }
 .green {
   background-color: green;
@@ -9,7 +10,7 @@
 }
 .whiteWithOutline {
   background-color: white;
-  border: 1px solid, black;
+  border: 1px solid black;
 }
 .whiteWithNoOutline {
   background-color: white;

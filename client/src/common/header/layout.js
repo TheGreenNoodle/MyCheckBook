@@ -1,19 +1,16 @@
-// components
-import Title from "./title";
+// ui components
+import Title from "./components/title";
+// btns
+import NavLinks from "./components/nav-links/nav-links";
 
-// common css
-// div
-import background from "../../common/css/background-color.module.css";
-import borderRadius from "../../common/css/border-radius.module.css";
-// text
-import fontColor from "../../common/css/text/color.module.css";
-import fontSize from "../../common/css/text/size.module.css";
-import align from "../../common/css/text/align.module.css";
+// css
+import layout from "./layout.module.css";
 
 function Header() {
   return (
-    <header>
+    <header className={layout.grid}>
       <Title />
+      <NavLinks />
     </header>
   );
 }
