@@ -1,0 +1,6 @@
+/* flex box */
+.flexMid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
