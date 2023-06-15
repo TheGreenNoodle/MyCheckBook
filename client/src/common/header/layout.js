@@ -1,5 +1,6 @@
 // ui components
 import Title from "./components/title";
+
 // btns
 import NavLinks from "./components/nav-links/nav-links";
 

@@ -2,7 +2,7 @@
 import { named, noName } from "./link-data";
 
 // common css
-// div
+// box styles
 import background from "../../../../common/css/color/background-color.module.css";
 import borderRadius from "../../../../common/css/border/border-radius.module.css";
 
@@ -15,7 +15,6 @@ import textSize from "../../../../common/css/size/text-size.module.css";
 
 // position
 import align from "../../../../common/css/position/box-align.module.css";
-import margin from "../../../../common/css/position/margin.module.css";
 
 // nav link css
 import navLink from "./nav-links.module.css";
@@ -25,13 +24,8 @@ function Link({ svg, fallBack, alt, name, route }) {
     <a
       className={`${borderRadius.elevenPx} ${textColor.black} ${textSize.small} ${background.whiteWithOutline} ${align.flexMid}`}
       href={route}>
-      <img
-        className={`${icon.large} `}
-        src={svg}
-        onerror={fallBack}
-        alt={alt}
-      />
-      {name !== undefined ? <p className={margin.px15}>{name}</p> : null}
+      <img className={`${icon.large}`} src={svg} onerror={fallBack} alt={alt} />
+      {name !== undefined ? <p className={navLink.name}>{name}</p> : null}
     </a>
   );
 }

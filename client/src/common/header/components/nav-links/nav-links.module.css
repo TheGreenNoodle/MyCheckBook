@@ -12,3 +12,8 @@
 .smBtnGroup {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+
+.name {
+  margin-left: 15px;
+  width: 120px;
+}
