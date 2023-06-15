@@ -1,13 +1,14 @@
-.grid {
+.grid,
+.smBtnGroup {
   display: grid;
-  grid-auto-rows: 1fr;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
   gap: 10px;
 }
 
+.grid {
+  grid-auto-rows: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .smBtnGroup {
-  display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
 }

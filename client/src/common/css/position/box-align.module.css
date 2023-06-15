@@ -1,6 +1,11 @@
-/* flex box */
+/* display flex */
 .flexMid {
   display: flex;
+}
+
+.flexMid {
   align-items: center;
   justify-content: center;
 }
+
+/* display grid */

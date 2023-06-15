@@ -3,18 +3,19 @@ import { named, noName } from "./link-data";
 
 // common css
 // div
-import background from "../../../../common/css/background-color.module.css";
-import borderRadius from "../../../../common/css/border-radius.module.css";
+import background from "../../../../common/css/color/background-color.module.css";
+import borderRadius from "../../../../common/css/border/border-radius.module.css";
 
 // size
-import icon from "../../../../common/css/icon.module.css";
+import icon from "../../../../common/css/size/icon-size.module.css";
 
 // text
-import fontColor from "../../../../common/css/text/color.module.css";
-import fontSize from "../../../../common/css/text/size.module.css";
+import textColor from "../../../../common/css/color/text-color.module.css";
+import textSize from "../../../../common/css/size/text-size.module.css";
 
 // position
-import align from "../../../../common/css/align.module.css";
+import align from "../../../../common/css/position/box-align.module.css";
+import margin from "../../../../common/css/position/margin.module.css";
 
 // nav link css
 import navLink from "./nav-links.module.css";
@@ -22,10 +23,15 @@ import navLink from "./nav-links.module.css";
 function Link({ svg, fallBack, alt, name, route }) {
   return (
     <a
-      className={`${borderRadius.elevenPx} ${fontColor.black} ${fontSize.small} ${background.whiteWithOutline} ${align.flexMid}`}
+      className={`${borderRadius.elevenPx} ${textColor.black} ${textSize.small} ${background.whiteWithOutline} ${align.flexMid}`}
       href={route}>
-      <img className={icon.large} src={svg} onerror={fallBack} alt={alt} />
-      {name}
+      <img
+        className={`${icon.large} `}
+        src={svg}
+        onerror={fallBack}
+        alt={alt}
+      />
+      {name !== undefined ? <p className={margin.px15}>{name}</p> : null}
     </a>
   );
 }

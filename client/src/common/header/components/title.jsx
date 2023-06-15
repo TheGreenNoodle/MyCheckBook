@@ -1,19 +1,20 @@
 // common css
 // div
-import background from "../../../common/css/background-color.module.css";
-import borderRadius from "../../../common/css/border-radius.module.css";
+import background from "../../../common/css/color/background-color.module.css";
+import borderRadius from "../../../common/css/border/border-radius.module.css";
+
 // text
-import fontColor from "../../../common/css/text/color.module.css";
-import fontSize from "../../../common/css/text/size.module.css";
+import textColor from "../../../common/css/color/text-color.module.css";
+import textSize from "../../../common/css/size/text-size.module.css";
 
 // position
-import align from "../../../common/css/align.module.css";
-import margin from "../../../common/css/margin.module.css";
+import align from "../../../common/css/position/box-align.module.css";
+import margin from "../../../common/css/position/margin.module.css";
 
 function Title() {
   return (
     <h1
-      className={`${fontColor.white} ${fontSize.extraLarge} ${borderRadius.elevenPx} ${background.black} ${align.flexMid} ${margin.none}`}>
+      className={`${textColor.white} ${textSize.extraLarge} ${borderRadius.elevenPx} ${background.black} ${align.flexMid} ${margin.none}`}>
       MyCheckBook
     </h1>
   );
