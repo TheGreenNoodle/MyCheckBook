@@ -12,8 +12,11 @@
 .smBtnGroup {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
+.smBtnGroup a {
+  aspect-ratio: 1 / 1;
+}
 
 .name {
   margin-left: 15px;
-  width: 120px;
+  width: 150px;
 }

@@ -1,12 +1,12 @@
 .extraLarge {
-  font-size: 45px;
+  font-size: calc(45px + 0.390625vw);
 }
 .large {
-  font-size: 36px;
+  font-size: calc(36px + 0.390625vw);
 }
 .medium {
-  font-size: 30px;
+  font-size: calc(30px + 0.390625vw);
 }
 .small {
-  font-size: 20px;
+  font-size: calc(15px + 0.390625vw);
 }
