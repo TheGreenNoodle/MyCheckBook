@@ -1,11 +1,14 @@
 /* display flex */
+.flexStart,
 .flexMid {
+  align-items: center;
   display: flex;
 }
 
-.flexMid {
-  align-items: center;
-  justify-content: center;
+.flexStart {
+  justify-content: start;
 }
 
-/* display grid */
+.flexMid {
+  justify-content: center;
+}

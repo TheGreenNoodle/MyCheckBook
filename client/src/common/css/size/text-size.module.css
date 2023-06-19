@@ -5,8 +5,8 @@
   font-size: calc(36px + 0.390625vw);
 }
 .medium {
-  font-size: calc(30px + 0.390625vw);
+  font-size: calc(25px + 0.390625vw);
 }
 .small {
-  font-size: calc(15px + 0.390625vw);
+  font-size: calc(20px + 0.390625vw);
 }

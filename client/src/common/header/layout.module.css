@@ -1,5 +1,44 @@
 .grid {
   display: grid;
-  grid-template-columns: 45% auto;
   gap: 10px;
+}
+
+/* large screens */
+@media (min-width: 1275px) {
+  .grid {
+    margin: auto;
+    width: 1200px;
+  }
+}
+@media (min-width: 1000px) {
+  .grid {
+    grid-template-columns: 45% auto;
+  }
+}
+
+/* medium screens */
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: 35% auto;
+  }
+}
+@media (max-width: 800px) {
+  .grid {
+    grid-template-columns: 100%;
+  }
+  .grid h1 {
+    min-height: 25vw;
+  }
+}
+
+/* small screens */
+@media (max-width: 600px) {
+  .grid h1 {
+    min-height: 30vw;
+  }
+}
+@media (max-width: 520px) {
+  .grid h1 {
+    min-height: 40vw;
+  }
 }

@@ -4,7 +4,8 @@ import { named, noName } from "./link-data";
 // common css
 // box styles
 import background from "../../../../common/css/color/background-color.module.css";
-import borderRadius from "../../../../common/css/border/border-radius.module.css";
+import borderRadius from "../../../../common/css/outer-box/border-radius.module.css";
+import padding from "../../../../common/css/outer-box/padding.module.css";
 
 // size
 import icon from "../../../../common/css/size/icon-size.module.css";
@@ -19,13 +20,23 @@ import align from "../../../../common/css/position/box-align.module.css";
 // nav link css
 import navLink from "./nav-links.module.css";
 
-function Link({ svg, fallBack, alt, name, route }) {
+function BgLink({ svg, fallBack, alt, name, route }) {
   return (
     <a
-      className={`${borderRadius.elevenPx} ${textColor.black} ${textSize.small} ${background.whiteWithOutline} ${align.flexMid}`}
+      className={`${borderRadius.elevenPx} ${textColor.black} ${background.whiteWithOutline} ${padding.medSpace} ${align.flexStart}`}
       href={route}>
       <img className={`${icon.large}`} src={svg} onerror={fallBack} alt={alt} />
-      {name !== undefined ? <p className={navLink.name}>{name}</p> : null}
+      <p className={`${textSize.small} ${navLink.name}`}>{name}</p>
+    </a>
+  );
+}
+
+function SmLink({ svg, fallBack, alt, route }) {
+  return (
+    <a
+      className={`${borderRadius.elevenPx} ${textColor.black} ${background.whiteWithOutline} ${align.flexMid}`}
+      href={route}>
+      <img className={`${icon.large}`} src={svg} onerror={fallBack} alt={alt} />
     </a>
   );
 }
@@ -36,7 +47,7 @@ function NavLinks() {
       {/* Name and icons */}
       {named.map((data) => {
         return (
-          <Link
+          <BgLink
             svg={data.svg}
             fallBack={data.fallBack}
             alt={data.alt}
@@ -50,7 +61,7 @@ function NavLinks() {
       <div className={navLink.smBtnGroup}>
         {noName.map((data) => {
           return (
-            <Link
+            <SmLink
               svg={data.svg}
               fallBack={data.fallBack}
               alt={data.alt}
