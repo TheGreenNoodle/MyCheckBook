@@ -20,23 +20,27 @@ import align from "../../../../common/css/position/box-align.module.css";
 // nav link css
 import navLink from "./nav-links.module.css";
 
-function BgLink({ svg, fallBack, alt, name, route }) {
+function Link({ svg, png, alt, name, route, nameExist }) {
   return (
     <a
-      className={`${borderRadius.elevenPx} ${textColor.black} ${background.whiteWithOutline} ${padding.medSpace} ${align.flexStart}`}
+      className={`${borderRadius.elevenPx} ${textColor.black} ${
+        background.whiteWithOutline
+      } ${nameExist ? padding.medSpace : null} ${
+        nameExist ? align.flexStart : align.flexMid
+      }`}
       href={route}>
-      <img className={`${icon.large}`} src={svg} onerror={fallBack} alt={alt} />
-      <p className={`${textSize.small} ${navLink.name}`}>{name}</p>
-    </a>
-  );
-}
-
-function SmLink({ svg, fallBack, alt, route }) {
-  return (
-    <a
-      className={`${borderRadius.elevenPx} ${textColor.black} ${background.whiteWithOutline} ${align.flexMid}`}
-      href={route}>
-      <img className={`${icon.large}`} src={svg} onerror={fallBack} alt={alt} />
+      <img
+        className={`${icon.large}`}
+        src={svg}
+        onError={({ currentTarget }) => {
+          currentTarget.onerror = null; // prevents looping
+          currentTarget.src = png;
+        }}
+        alt={alt}
+      />
+      {nameExist ? (
+        <p className={`${textSize.small} ${navLink.name}`}>{name}</p>
+      ) : null}
     </a>
   );
 }
@@ -47,9 +51,10 @@ function NavLinks() {
       {/* Name and icons */}
       {named.map((data) => {
         return (
-          <BgLink
+          <Link
+            nameExist={true}
             svg={data.svg}
-            fallBack={data.fallBack}
+            png={data.fallBack}
             alt={data.alt}
             name={data.name}
             route={data.route}
@@ -61,9 +66,10 @@ function NavLinks() {
       <div className={navLink.smBtnGroup}>
         {noName.map((data) => {
           return (
-            <SmLink
+            <Link
+              nameExist={false}
               svg={data.svg}
-              fallBack={data.fallBack}
+              png={data.fallBack}
               alt={data.alt}
               route={data.route}
             />
