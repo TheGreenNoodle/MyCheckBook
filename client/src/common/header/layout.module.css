@@ -7,12 +7,12 @@
 @media (min-width: 1275px) {
   .grid {
     margin: auto;
-    width: 1200px;
+    width: 1000px;
   }
 }
 @media (min-width: 1000px) {
   .grid {
-    grid-template-columns: 45% auto;
+    grid-template-columns: 40% auto;
   }
 }
 

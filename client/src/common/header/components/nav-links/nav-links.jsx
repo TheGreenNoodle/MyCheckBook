@@ -1,6 +1,9 @@
 // link data
 import { named, noName } from "./link-data";
 
+// create a unique key
+import { v4 as uuidv4 } from "uuid";
+
 // common css
 // box styles
 import background from "../../../../common/css/color/background-color.module.css";
@@ -28,7 +31,7 @@ function Link({ svg, png, alt, name, route, nameExist }) {
       } ${nameExist ? padding.medSpace : null} ${
         nameExist ? align.flexStart : align.flexMid
       }`}
-      href={route}>
+      href={"/"}>
       <img
         className={`${icon.large}`}
         src={svg}
@@ -52,6 +55,7 @@ function NavLinks() {
       {named.map((data) => {
         return (
           <Link
+            key={uuidv4()}
             nameExist={true}
             svg={data.svg}
             png={data.fallBack}
@@ -67,6 +71,7 @@ function NavLinks() {
         {noName.map((data) => {
           return (
             <Link
+              key={uuidv4()}
               nameExist={false}
               svg={data.svg}
               png={data.fallBack}
