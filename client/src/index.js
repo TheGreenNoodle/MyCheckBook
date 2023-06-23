@@ -4,12 +4,16 @@ import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
 
+// common
+import Header from "./common/header/layout";
+
 // Pages
 import Dashboard from "./pages/dashboard/layout";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
+    <Header />
     <Dashboard />
   </React.StrictMode>
 );
