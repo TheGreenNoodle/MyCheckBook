@@ -32,9 +32,11 @@ function Wrapper({ children }) {
 }
 
 function LineGraph({ labels, datasets }) {
-  const example = "ea sports";
   // throws an error if a parameter is undefined
-  UndefinedParam(example);
+  UndefinedParam({
+    labels: labels,
+    datasets: datasets,
+  });
 
   return (
     <Wrapper>

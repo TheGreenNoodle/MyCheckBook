@@ -1,17 +1,15 @@
-// accepts an array of params you want defined
-// returns an error if undefined else returns nothing
-function UndefinedParam({ params }) {
-  console.log("key val " + params);
-  //   for (const elem of params) {
-  //     const elemToStr = Object.keys({ elem })[0];
-  //     if (!elem)
-  //       throw new Error(
-  //         elemToStr +
-  //           " can not be undefined. Please add " +
-  //           elemToStr +
-  //           " to component."
-  //       );
-  //   }
+import { isObject } from "./typeOf";
+
+// accepts a object with the key being the name of the param and the keys value being the data of that param.
+// if a keys value is undefined it will throw an error saying which key or param needs to be defined so a certain component works as expected.
+function UndefinedParam(obj) {
+  // requires an obj
+  if (!isObject(obj))
+    throw new Error("UndefinedParam requires an object as the input");
+
+  for (const key in obj) {
+    if (!obj[key]) throw new Error(key + " can not be undefined");
+  }
 }
 
 export { UndefinedParam };
