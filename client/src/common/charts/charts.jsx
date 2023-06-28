@@ -46,6 +46,8 @@ function LineGraph({ labels, datasets }) {
 }
 
 function PieGraph() {
+  UndefinedParam({});
+
   const data = {
     labels: ["Red", "Orange", "Blue"],
 
