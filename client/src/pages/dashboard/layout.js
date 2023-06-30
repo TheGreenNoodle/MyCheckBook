@@ -2,9 +2,9 @@ import { LineGraph, PieGraph } from "../../common/charts/charts";
 
 function Dashboard() {
   const past30Days = [
-    "1",
-    "2",
-    "3",
+    "06/01/23",
+    "06/01/23",
+    "06/01/23",
     "4",
     "5",
     "6",
