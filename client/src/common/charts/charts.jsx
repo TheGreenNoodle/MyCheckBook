@@ -1,6 +1,13 @@
 // common utility functions
-import { Chart, Colors, CategoryScale, LinearScale, Legend } from "chart.js";
-import { UndefinedParam } from "../utility/throwError";
+// chartJS
+import {
+  Chart,
+  Colors,
+  CategoryScale,
+  Tooltip,
+  LinearScale,
+  Legend,
+} from "chart.js";
 
 // line graph utility
 import { LineController, LineElement, PointElement } from "chart.js";
@@ -8,16 +15,20 @@ import { LineController, LineElement, PointElement } from "chart.js";
 // pie graph utility
 import { PieController, ArcElement } from "chart.js";
 
-// react components
+// chartJS react components
 import { Line, Pie } from "react-chartjs-2";
 
+// test files
+import { UndefinedParam } from "../utility/throwError";
+
 // css
-import styles from "./charts.module.css";
+import chart from "./charts.module.css";
 
 Chart.register(
   Colors,
   CategoryScale,
   LinearScale,
+  Tooltip,
   Legend,
   LineController,
   LineElement,
@@ -28,53 +39,49 @@ Chart.register(
 
 // wrapper to allow responsive graphs
 function Wrapper({ children }) {
-  return <div className={styles.wrapper}>{children}</div>;
+  return <div className={chart.wrapper}>{children}</div>;
 }
 
-function LineGraph({ labels, datasets }) {
+function LineGraph({ labels, datasets, titles }) {
   // throws an error if a parameter is undefined
   UndefinedParam({
     labels: labels,
     datasets: datasets,
+    titles: titles,
   });
 
   return (
     <Wrapper>
-      <Line data={{ labels, datasets }} />
+      <Line
+        options={{
+          scales: {
+            x: { title: { display: true, text: titles.xAxis } },
+            y: { title: { display: true, text: titles.yAxis } },
+          },
+        }}
+        data={{ labels, datasets }}
+      />
     </Wrapper>
   );
 }
 
-function PieGraph() {
-  UndefinedParam({});
-
-  const data = {
-    labels: ["Red", "Orange", "Blue"],
-
+function PieGraph({ labels, data }) {
+  // throws an error if a parameter is undefined
+  UndefinedParam({ labels: labels, data: data });
+  const a = {
+    labels: labels,
     datasets: [
       {
-        label: "Popularity of colours",
-        data: [55, 23, 96],
-        // you can set indiviual colors for each bar
-        backgroundColor: ["#FF0000", "#0000FF", "#00FF00"],
-        borderWidth: 1,
+        label: "# of Votes",
+        data: [12, 19, 3, 5, 2, 3],
       },
     ],
+    hoverOffset: 4,
   };
 
   return (
     <Wrapper>
-      <Pie
-        data={data}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: "Users Gained between 2016-2020",
-            },
-          },
-        }}
-      />
+      <Pie data={a} />
     </Wrapper>
   );
 }
