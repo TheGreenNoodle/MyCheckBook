@@ -1,4 +1,4 @@
-// Takes in a integer and outputs an array of dates from x to current date
+// Takes in a integer and outputs an array of dates starting at nums days back from current date to current date
 
 function xToCurrDate(num) {
   const date = new Date();
