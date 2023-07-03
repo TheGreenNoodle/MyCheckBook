@@ -1,39 +1,13 @@
+// graphs
 import { LineGraph, PieGraph } from "../../common/charts/charts";
 
-function Dashboard() {
-  const past30Days = [
-    "06/01/23",
-    "06/01/23",
-    "06/01/23",
-    "4",
-    "5",
-    "6",
-    "7",
-    "8",
-    "9",
-    "10",
-    "11",
-    "12",
-    "13",
-    "14",
-    "15",
-    "16",
-    "17",
-    "18",
-    "19",
-    "20",
-    "21",
-    "22",
-    "23",
-    "24",
-    "25",
-    "26",
-    "27",
-    "28",
-    "29",
-    "30",
-  ];
+// utility
+import { xToCurrDate } from "../../common/utility/time/xToCurrDate";
 
+function Dashboard() {
+  const past30Days = xToCurrDate(30);
+
+  console.log(xToCurrDate(365));
   const spending = {
     lineOne: [
       { x: "1", y: 9 },
