@@ -1,4 +1,3 @@
-// used to get current date
 const date = new Date();
 
 // used to get the number of days in a month
@@ -18,7 +17,6 @@ class DateBuilder {
     this.currDate = `${month}/${day}/${this.halfYear}`;
   }
 
-  // reduce by 1
   decrementMonth() {
     this.month--;
   }
@@ -30,7 +28,6 @@ class DateBuilder {
     this.halfYear = this.fullYear.toString().slice(2);
   }
 
-  // set to end of year
   resetMonth() {
     this.month = 12;
   }
