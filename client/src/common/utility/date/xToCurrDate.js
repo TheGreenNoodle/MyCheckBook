@@ -1,5 +1,5 @@
 //utility
-import { DateBuilder } from "./DateBuilder";
+import { DateBuilder } from "./dateBuilder";
 
 // creates an array of dates num days back from the current date
 // starts from earliest date to latests date which would be the current date

@@ -14,7 +14,15 @@ describe("xToCurrDate", () => {
     expect(firstElemYear).toEqual(lastElemYear - 1);
   });
 
-  test("goes back 30 days", () => {
-    const output = xToCurrDate(30);
+  test("days and months decrease as they should", () => {
+    const output = xToCurrDate(90);
+
+    let firstElemMonth = output[0].split("/");
+    firstElemMonth = parseInt(firstElemMonth[0]);
+
+    let lastElemMonth = output[output.length - 1].split("/");
+    lastElemMonth = parseInt(lastElemMonth[0]);
+
+    expect(firstElemMonth).toBeLessThan(lastElemMonth);
   });
 });

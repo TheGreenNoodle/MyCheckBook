@@ -2,12 +2,12 @@
 import { LineGraph, PieGraph } from "../../common/charts/charts";
 
 // utility
-import { xToCurrDate } from "../../common/utility/time/xToCurrDate";
+import { xToCurrDate } from "../../common/utility/date/xToCurrDate";
 
 function Dashboard() {
   const past30Days = xToCurrDate(30);
 
-  console.log(xToCurrDate(365));
+  console.log(xToCurrDate(28));
   const spending = {
     lineOne: [
       { x: "1", y: 9 },
