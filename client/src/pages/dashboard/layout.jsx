@@ -1,50 +1,54 @@
+// react utility
+import { useRef } from "react";
+
+// child components of layout
+import { ChangeTimeFrame } from "./children/changeTimeFrame";
+import { ExpenseSummary } from "./children/expenseSummary";
+
 // graphs
 import { LineGraph, PieGraph } from "../../common/charts/charts";
 
-// utility
-import { xToCurrDate } from "../../common/utility/date/xToCurrDate";
+// css
+import styles from "./layout.module.css";
 
 function Dashboard() {
-  const past30Days = xToCurrDate(30);
+  const timeFrame = useRef(null);
 
-  console.log(xToCurrDate(28));
-  const spending = {
-    lineOne: [
-      { x: "1", y: 9 },
-      { x: "7", y: 18 },
-    ],
-    lineTwo: [
-      { x: "1", y: 2 },
-      { x: "3", y: 4 },
-      { x: "5", y: 11 },
-      { x: "7", y: 17 },
-    ],
-  };
-
-  // slice will be the length of the data for labels
   return (
-    <div>
+    <div className={styles.wrapper}>
+      <div>
+        <ChangeTimeFrame ref={timeFrame} />
+        <ExpenseSummary />
+      </div>
+
       <LineGraph
-        labels={past30Days.slice(0, 7)}
+        labels={timeFrame.current.value}
         titles={{
+          main: "Income vs Spending",
           xAxis: "Past Month",
           yAxis: "USD",
         }}
         datasets={[
           {
             label: "Income",
-            data: spending.lineOne,
+            data: [],
           },
           {
             label: "Spending",
-            data: spending.lineTwo,
+            data: [],
           },
         ]}
       />
 
       <PieGraph
-        labels={["Red", "Blue", "Yellow", "Green", "Purple", "Orange"]}
-        data={[12, 19, 3, 5, 2, 3]}
+        titles={{
+          main: "Spending by Category",
+          xAxis: "Past Month",
+          yAxis: "USD",
+        }}
+        labels={["Milk", "oreo's", "apple"]}
+        currency={"USD"}
+        data={[1, 2, 3]}
       />
     </div>
   );

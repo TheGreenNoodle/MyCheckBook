@@ -1,15 +1,16 @@
 //utility
 import { DateBuilder } from "./dateBuilder";
 
-// creates an array of dates num days back from the current date
-// starts from earliest date to latests date which would be the current date
-function xToCurrDate(num) {
+// creates an array of dates x number of days back from the current date
+// input is the number of days you want to go back from the current date
+// the array starts at the earliest date and goes all the way up to the current date
+function xToCurrDate(daysBack) {
   let output = [];
 
   // starts on current date
   let date = new DateBuilder();
 
-  for (let i = num; i !== -1; i--) {
+  for (let i = daysBack; i !== 0; i--) {
     output.push(date.currDate);
 
     // subtract 1 from day

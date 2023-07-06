@@ -2,6 +2,7 @@
 // chartJS
 import {
   Chart,
+  Title,
   Colors,
   CategoryScale,
   Tooltip,
@@ -25,6 +26,7 @@ import { UndefinedParam } from "../utility/throwError";
 import chart from "./charts.module.css";
 
 Chart.register(
+  Title,
   Colors,
   CategoryScale,
   LinearScale,
@@ -54,6 +56,12 @@ function LineGraph({ labels, datasets, titles }) {
     <Wrapper>
       <Line
         options={{
+          plugins: {
+            title: {
+              display: true,
+              text: titles.main,
+            },
+          },
           scales: {
             x: { title: { display: true, text: titles.xAxis } },
             y: { title: { display: true, text: titles.yAxis } },
@@ -65,23 +73,31 @@ function LineGraph({ labels, datasets, titles }) {
   );
 }
 
-function PieGraph({ labels, data }) {
+function PieGraph({ labels, titles, currency, data }) {
   // throws an error if a parameter is undefined
   UndefinedParam({ labels: labels, data: data });
-  const a = {
-    labels: labels,
-    datasets: [
-      {
-        label: "# of Votes",
-        data: [12, 19, 3, 5, 2, 3],
-      },
-    ],
-    hoverOffset: 4,
-  };
 
   return (
     <Wrapper>
-      <Pie data={a} />
+      <Pie
+        options={{
+          plugins: {
+            title: {
+              display: true,
+              text: titles.main,
+            },
+          },
+        }}
+        data={{
+          labels: labels,
+          datasets: [
+            {
+              label: currency,
+              data: data,
+            },
+          ],
+        }}
+      />
     </Wrapper>
   );
 }
