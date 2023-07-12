@@ -1,9 +1,12 @@
 // react utility
-import { useRef } from "react";
+import { useState } from "react";
+
+// utility
+import { xToCurrDate } from "../../common/utility/date/xToCurrDate";
 
 // child components of layout
 import { ChangeTimeFrame } from "./children/changeTimeFrame";
-import { ExpenseSummary } from "./children/expenseSummary";
+import { SpendingSummary } from "./children/spendingSummary";
 
 // graphs
 import { LineGraph, PieGraph } from "../../common/charts/charts";
@@ -12,22 +15,25 @@ import { LineGraph, PieGraph } from "../../common/charts/charts";
 import styles from "./layout.module.css";
 
 function Dashboard() {
-  const timeFrame = useRef(null);
+  const [timeFrame, setTimeFrame] = useState({
+    name: "Past 30 Days",
+    dates: xToCurrDate(30),
+  });
 
   return (
     <div className={styles.wrapper}>
       <div>
-        <ChangeTimeFrame ref={timeFrame} />
-        <ExpenseSummary />
+        <ChangeTimeFrame setTimeFrame={setTimeFrame} />
+        <SpendingSummary />
       </div>
 
       <LineGraph
-        labels={timeFrame.current.value}
         titles={{
           main: "Income vs Spending",
-          xAxis: "Past Month",
+          xAxis: timeFrame.name,
           yAxis: "USD",
         }}
+        labels={timeFrame.dates}
         datasets={[
           {
             label: "Income",
@@ -43,7 +49,7 @@ function Dashboard() {
       <PieGraph
         titles={{
           main: "Spending by Category",
-          xAxis: "Past Month",
+          xAxis: timeFrame.name,
           yAxis: "USD",
         }}
         labels={["Milk", "oreo's", "apple"]}

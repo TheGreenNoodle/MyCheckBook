@@ -5,10 +5,18 @@
   display: flex;
 }
 
+/* no wrap */
+
 .flexStart {
   justify-content: start;
 }
 
-.flexMid {
+.flexMid,
+.flexMidWrap {
   justify-content: center;
+}
+
+/* wrap */
+.flexMidWrap {
+  flex-wrap: wrap;
 }

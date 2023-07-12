@@ -1,6 +1,3 @@
-// react utility
-import { forwardRef } from "react";
-
 // utility
 import { xToCurrDate } from "../../../common/utility/date/xToCurrDate";
 
@@ -9,22 +6,31 @@ import background from "../../../common/css/color/background-color.module.css";
 import border from "../../../common/css/outer-box/border-radius.module.css";
 import position from "../../../common/css/position/box-align.module.css";
 
-function Option({ daysBack, name }) {
-  const dates = xToCurrDate(daysBack);
-  return <option value={dates}>{name}</option>;
-}
+const timeFrames = {
+  "Past 30 Days": xToCurrDate(30),
+  "Past 90 Days": xToCurrDate(90),
+  "Past Year": xToCurrDate(365),
+  "All Time": [],
+};
 
 // used to change the time frame of data in dashboard
-const ChangeTimeFrame = forwardRef((props, ref) => {
+function ChangeTimeFrame({ setTimeFrame }) {
   return (
     <select
       className={`${background.whiteWithNoOutline} ${border.fivePx} ${position.flexMid}`}
-      ref={ref}>
-      <Option daysBack={30} name="Past Month" />
-      <Option daysBack={90} name="Past 3 Months" />
-      <Option daysBack={365} name="Past Year" />
+      onChange={(e) => {
+        const keyName = e.target.value;
+        setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
+      }}>
+      {Object.keys(timeFrames).map((keyName, index) => {
+        return (
+          <option key={index} value={keyName}>
+            {keyName}
+          </option>
+        );
+      })}
     </select>
   );
-});
+}
 
 export { ChangeTimeFrame };
