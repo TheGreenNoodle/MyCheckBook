@@ -1,8 +1,0 @@
-/* makes heights equal width */
-.large {
-  aspect-ratio: 1 / 1;
-}
-
-.large {
-  width: calc(45px + 0.390625vw);
-}

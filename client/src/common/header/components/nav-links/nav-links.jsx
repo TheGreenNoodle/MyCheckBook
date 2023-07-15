@@ -4,24 +4,14 @@ import { named, noName } from "./link-data";
 // create a unique key
 import { v4 as uuidv4 } from "uuid";
 
-// common css
-// box styles
-import background from "../../../../common/css/color/background-color.module.css";
-
-// size
-import icon from "../../../../common/css/size/icon-size.module.css";
-
-// nav link css
-import navLink from "./nav-links.module.css";
+// css
+import styles from "../../layout.module.css";
 
 function Link({ svg, png, alt, name, route, nameExist }) {
   return (
-    <a
-      className={`  ${background.whiteWithOutline} $
-      }`}
-      href={"/"}>
+    <a className={`${styles["box"]} ${styles["box--white"]}`} href={route}>
       <img
-        className={`${icon.large}`}
+        className={styles[("box__icon", "box__icon--large")]}
         src={svg}
         onError={({ currentTarget }) => {
           currentTarget.onerror = null; // prevents looping
@@ -29,14 +19,14 @@ function Link({ svg, png, alt, name, route, nameExist }) {
         }}
         alt={alt}
       />
-      {nameExist ? <h2 className={` ${navLink.name}`}>{name}</h2> : null}
+      {nameExist ? <h2>{name}</h2> : null}
     </a>
   );
 }
 
 function NavLinks() {
   return (
-    <nav className={navLink.grid}>
+    <nav>
       {/* Name and icons */}
       {named.map((data) => {
         return (
@@ -53,7 +43,7 @@ function NavLinks() {
       })}
 
       {/* Just icons group */}
-      <div className={navLink.smBtnGroup}>
+      <div>
         {noName.map((data) => {
           return (
             <Link

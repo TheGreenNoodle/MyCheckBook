@@ -1,6 +1,3 @@
-// css
-import background from "../../../common/css/color/background-color.module.css";
-
 function Block({ name, moneyAmount }) {
   return (
     <>
@@ -12,7 +9,7 @@ function Block({ name, moneyAmount }) {
 
 function MoneyFlowSummary() {
   return (
-    <div className={`${background.whiteWithNoOutline}`}>
+    <div className={``}>
       <h2>Money Flow</h2>
       <hr />
       <Block name="Income" moneyAmount={2000} />

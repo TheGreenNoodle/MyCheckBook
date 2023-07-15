@@ -3,14 +3,17 @@ html {
   background-color: #d9d9d9;
   box-sizing: border-box;
 
+  color: black;
+
   font-family: "Cormorant Garamond", serif;
   font-size: calc(15px + 0.390625vw);
+  margin: 0;
 
   padding: 10px;
-  margin: 0;
 }
 * {
   box-sizing: inherit;
+  color: inherit;
   font-family: inherit;
   font-size: inherit;
   margin: inherit;
@@ -31,4 +34,7 @@ h3 {
 
 a {
   text-decoration: none;
+}
+hr {
+  border-style: solid none none;
 }
