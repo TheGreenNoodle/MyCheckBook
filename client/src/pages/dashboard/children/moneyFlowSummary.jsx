@@ -4,7 +4,7 @@ import background from "../../../common/css/color/background-color.module.css";
 function Block({ name, moneyAmount }) {
   return (
     <>
-      <h2>{name}</h2>
+      <h3>{name}</h3>
       <p>${moneyAmount}</p>
     </>
   );
@@ -13,7 +13,7 @@ function Block({ name, moneyAmount }) {
 function MoneyFlowSummary() {
   return (
     <div className={`${background.whiteWithNoOutline}`}>
-      <h1>Expense Summary</h1>
+      <h2>Money Flow</h2>
       <hr />
       <Block name="Income" moneyAmount={2000} />
       <hr />

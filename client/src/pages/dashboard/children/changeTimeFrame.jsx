@@ -1,5 +1,7 @@
 // utility
 import { xToCurrDate } from "../../../common/utility/date/xToCurrDate";
+// create a unique key
+import { v4 as uuidv4 } from "uuid";
 
 // css
 import background from "../../../common/css/color/background-color.module.css";
@@ -20,9 +22,9 @@ function ChangeTimeFrame({ setTimeFrame }) {
         const keyName = e.target.value;
         setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
       }}>
-      {Object.keys(timeFrames).map((keyName, index) => {
+      {Object.keys(timeFrames).map((keyName) => {
         return (
-          <option key={index} value={keyName}>
+          <option key={uuidv4()} value={keyName}>
             {keyName}
           </option>
         );

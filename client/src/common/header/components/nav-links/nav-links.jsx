@@ -11,9 +11,6 @@ import background from "../../../../common/css/color/background-color.module.css
 // size
 import icon from "../../../../common/css/size/icon-size.module.css";
 
-// text
-import textSize from "../../../../common/css/size/text-size.module.css";
-
 // nav link css
 import navLink from "./nav-links.module.css";
 
@@ -32,9 +29,7 @@ function Link({ svg, png, alt, name, route, nameExist }) {
         }}
         alt={alt}
       />
-      {nameExist ? (
-        <p className={`${textSize.small} ${navLink.name}`}>{name}</p>
-      ) : null}
+      {nameExist ? <h2 className={` ${navLink.name}`}>{name}</h2> : null}
     </a>
   );
 }
