@@ -7,18 +7,12 @@ import { v4 as uuidv4 } from "uuid";
 // common css
 // box styles
 import background from "../../../../common/css/color/background-color.module.css";
-import borderRadius from "../../../../common/css/outer-box/border-radius.module.css";
-import padding from "../../../../common/css/outer-box/padding.module.css";
 
 // size
 import icon from "../../../../common/css/size/icon-size.module.css";
 
 // text
-import textColor from "../../../../common/css/color/text-color.module.css";
 import textSize from "../../../../common/css/size/text-size.module.css";
-
-// position
-import align from "../../../../common/css/position/box-align.module.css";
 
 // nav link css
 import navLink from "./nav-links.module.css";
@@ -26,10 +20,7 @@ import navLink from "./nav-links.module.css";
 function Link({ svg, png, alt, name, route, nameExist }) {
   return (
     <a
-      className={`${borderRadius.elevenPx} ${textColor.black} ${
-        background.whiteWithOutline
-      } ${nameExist ? padding.medSpace : null} ${
-        nameExist ? align.flexStart : align.flexMid
+      className={`  ${background.whiteWithOutline} $
       }`}
       href={"/"}>
       <img

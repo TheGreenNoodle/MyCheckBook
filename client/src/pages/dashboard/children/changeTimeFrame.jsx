@@ -3,8 +3,6 @@ import { xToCurrDate } from "../../../common/utility/date/xToCurrDate";
 
 // css
 import background from "../../../common/css/color/background-color.module.css";
-import border from "../../../common/css/outer-box/border-radius.module.css";
-import position from "../../../common/css/position/box-align.module.css";
 
 const timeFrames = {
   "Past 30 Days": xToCurrDate(30),
@@ -17,7 +15,7 @@ const timeFrames = {
 function ChangeTimeFrame({ setTimeFrame }) {
   return (
     <select
-      className={`${background.whiteWithNoOutline} ${border.fivePx} ${position.flexMid}`}
+      className={`${background.whiteWithNoOutline}`}
       onChange={(e) => {
         const keyName = e.target.value;
         setTimeFrame({ name: keyName, dates: timeFrames[keyName] });

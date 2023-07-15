@@ -8,11 +8,27 @@
 .red {
   background-color: red;
 }
-.whiteWithOutline {
+
+.whiteWithOutline,
+.whiteWithNoOutline {
   background-color: white;
+}
+.whiteWithOutline {
   border: 1px solid black;
 }
 .whiteWithNoOutline {
-  background-color: white;
   border-style: none;
+}
+
+/* font color white */
+.black,
+.green,
+.red {
+  color: white;
+}
+
+/* font color black */
+.whiteWithOutline,
+.whiteWithNoOutline {
+  color: black;
 }

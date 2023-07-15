@@ -6,7 +6,7 @@ import { xToCurrDate } from "../../common/utility/date/xToCurrDate";
 
 // child components of layout
 import { ChangeTimeFrame } from "./children/changeTimeFrame";
-import { SpendingSummary } from "./children/spendingSummary";
+import { MoneyFlowSummary } from "./children/moneyFlowSummary";
 
 // graphs
 import { LineGraph, PieGraph } from "../../common/charts/charts";
@@ -24,7 +24,7 @@ function Dashboard() {
     <div className={styles.wrapper}>
       <div>
         <ChangeTimeFrame setTimeFrame={setTimeFrame} />
-        <SpendingSummary />
+        <MoneyFlowSummary />
       </div>
 
       <LineGraph

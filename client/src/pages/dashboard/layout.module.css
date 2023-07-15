@@ -1,5 +1,5 @@
 .wrapper {
   display: grid;
-  grid-template-columns: 30% auto;
+  grid-template-columns: auto 80%;
   gap: 10px;
 }
