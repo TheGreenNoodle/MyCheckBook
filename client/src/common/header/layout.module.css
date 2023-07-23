@@ -1,9 +1,22 @@
+/* grid block */
+.grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 45% auto;
+}
+
+/* grid modifier */
+.grid--justIcons {
+  aspect-ratio: 1 / 1;
+  grid-template-columns: 33% 33% 33%;
+}
+
 /* box block */
 .box {
-  display: flex;
-  justify-content: center;
   align-items: center;
   border-radius: 11px;
+  display: flex;
+  justify-content: center;
 }
 
 /* box modifier */
@@ -18,11 +31,8 @@
 /* box elements */
 .box__icon {
   aspect-ratio: 1 / 1;
-}
-.box__icon--large {
   width: calc(45px + 0.390625vw);
 }
-
 .box__title {
   height: 200px;
 }
