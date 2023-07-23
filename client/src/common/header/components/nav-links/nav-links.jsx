@@ -26,7 +26,7 @@ function Link({ svg, png, alt, name, route, nameExist }) {
 
 function NavLinks() {
   return (
-    <nav className={styles.grid}>
+    <nav className={`${styles["grid"]} ${styles["grid--nav"]} `}>
       {/* Name and icons */}
       {named.map((data) => {
         return (
@@ -43,7 +43,7 @@ function NavLinks() {
       })}
 
       {/* Just icons group */}
-      <div className={`${styles["grid"]} ${styles["grid--justIcons"]}`}>
+      <div className={`${styles["grid"]} ${styles["grid--iconGroup"]}`}>
         {noName.map((data) => {
           return (
             <Link

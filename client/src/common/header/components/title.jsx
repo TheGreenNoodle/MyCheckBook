@@ -4,7 +4,7 @@ import styles from "../layout.module.css";
 function Title() {
   return (
     <h1
-      className={`${styles["box"]} ${styles["box--black"]} ${styles["box__title"]}`}>
+      className={`${styles["box"]} ${styles["box--black"]} ${styles["grid__title"]}`}>
       My Checkbook
     </h1>
   );

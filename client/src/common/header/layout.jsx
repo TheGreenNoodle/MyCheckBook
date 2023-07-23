@@ -9,7 +9,7 @@ import layout from "./layout.module.css";
 
 function Header() {
   return (
-    <header className={layout.grid}>
+    <header className={`${layout["grid"]} ${layout["grid--main"]}`}>
       <Title />
       <NavLinks />
     </header>

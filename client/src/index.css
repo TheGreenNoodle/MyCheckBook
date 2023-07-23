@@ -2,19 +2,21 @@
 html {
   background-color: #d9d9d9;
   box-sizing: border-box;
-
   color: black;
-
   font-family: "Cormorant Garamond", serif;
-  margin: 0;
-
   padding: 10px;
 }
 * {
   box-sizing: inherit;
   color: inherit;
   font-family: inherit;
-  margin: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
 }
 
 /* tag selectors */
@@ -39,4 +41,11 @@ a {
 
 hr {
   border-style: solid none none;
+}
+
+/* media query's */
+@media (max-width: 400px) {
+  html {
+    padding: 3px;
+  }
 }
