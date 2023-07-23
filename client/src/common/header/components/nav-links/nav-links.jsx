@@ -1,3 +1,6 @@
+// react utility
+import { useRef } from "react";
+
 // link data
 import { named, noName } from "./link-data";
 
@@ -24,9 +27,16 @@ function Link({ svg, png, alt, name, route, nameExist }) {
   );
 }
 
-function NavLinks() {
+function NavLinks({ menuToggled }) {
+  const navMenu = useRef(null);
+
+  if (navMenu.current)
+    menuToggled
+      ? navMenu.current.classList.add(`${styles["display--none"]}`)
+      : navMenu.current.classList.remove(`${styles["display--none"]}`);
+
   return (
-    <nav className={`${styles["grid"]} ${styles["grid--nav"]} `}>
+    <nav ref={navMenu} className={`${styles["grid"]} ${styles["grid--nav"]} `}>
       {/* Name and icons */}
       {named.map((data) => {
         return (

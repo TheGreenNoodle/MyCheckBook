@@ -107,3 +107,8 @@
     aspect-ratio: 3 / 1.5;
   }
 }
+
+/* delate */
+.display--none {
+  display: none;
+}

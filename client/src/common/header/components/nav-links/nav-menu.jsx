@@ -1,9 +1,13 @@
 // css
 import styles from "../../layout.module.css";
 
-function NavMenu() {
+function NavMenu({ menuToggled, setMenuToggle }) {
   return (
-    <button className={`${styles["box"]} ${styles["box--dropdown"]}`}>
+    <button
+      onClick={() => {
+        setMenuToggle(!menuToggled);
+      }}
+      className={`${styles["box"]} ${styles["box--dropdown"]}`}>
       <img
         onError={({ currentTarget }) => {
           currentTarget.onError = null; // prevents looping
