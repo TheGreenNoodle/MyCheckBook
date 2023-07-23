@@ -43,6 +43,10 @@ hr {
   border-style: solid none none;
 }
 
+img {
+  font-size: 10px;
+}
+
 /* media query's */
 @media (max-width: 400px) {
   html {

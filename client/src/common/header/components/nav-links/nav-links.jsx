@@ -11,12 +11,12 @@ function Link({ svg, png, alt, name, route, nameExist }) {
   return (
     <a className={`${styles["box"]} ${styles["box--white"]}`} href={route}>
       <img
-        className={styles["box__icon"]}
-        src={svg}
         onError={({ currentTarget }) => {
-          currentTarget.onerror = null; // prevents looping
+          currentTarget.onError = null; // prevents looping
           currentTarget.src = png;
         }}
+        src={svg}
+        className={styles["box__icon"]}
         alt={alt}
       />
       {nameExist ? <h2>{name}</h2> : null}
