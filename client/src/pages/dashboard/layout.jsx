@@ -25,7 +25,7 @@ function Dashboard() {
       className={`${styles[`wrapper`]} ${
         styles["wrapper--moneyFlowAndLineGraph"]
       }`}>
-      <div className={`${styles["wrapper--moneyFlow"]}`}>
+      <div className={`${styles[`positionRelative`]}`}>
         <ChangeTimeFrame setTimeFrame={setTimeFrame} />
         <MoneyFlowSummary />
       </div>

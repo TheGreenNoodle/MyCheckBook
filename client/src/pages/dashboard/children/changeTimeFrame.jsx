@@ -1,3 +1,6 @@
+// react utility
+import { useState } from "react";
+
 // utility
 import { xToCurrDate } from "../../../common/utility/date/xToCurrDate";
 
@@ -17,20 +20,37 @@ const timeFrames = {
 // used to change the time frame of data in dashboard
 function ChangeTimeFrame({ setTimeFrame }) {
   return (
-    <select
-      className={`${styles["box"]} ${styles["box--select"]}`}
-      onChange={(e) => {
-        const keyName = e.target.value;
-        setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
-      }}>
-      {Object.keys(timeFrames).map((keyName) => {
-        return (
-          <option key={uuidv4()} value={keyName}>
-            {keyName}
-          </option>
-        );
-      })}
-    </select>
+    <>
+      <button className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}>
+        <h3 className={`${styles["box--dropdown__header"]}`}>Past 30 Days</h3>
+        <img
+          className={`${styles["box--dropdown__icon"]}`}
+          onError={({ currentTarget }) => {
+            currentTarget.onError = null; // prevents looping
+            currentTarget.src = "/icons/changeTimeFrame/down-arrow-black.png";
+          }}
+          src="/icons/changeTimeFrame/down-arrow-black.svg"
+          alt="dropdown-icon"
+        />
+      </button>
+      <ul
+        className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}
+        onChange={(e) => {
+          const keyName = e.target.value;
+          setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
+        }}>
+        {Object.keys(timeFrames).map((keyName) => {
+          return (
+            <li key={uuidv4()} data-value={keyName}>
+              <button
+                className={`${styles["box"]}  ${styles["box--sharpCorners"]} ${styles["box--dropdown__menu__btn"]}`}>
+                <p>{keyName}</p>
+              </button>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
 }
 

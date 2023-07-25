@@ -28,13 +28,11 @@ h2 {
   font-size: calc(25px + 0.390625vw);
   font-weight: 600;
 }
-h3,
-select {
+h3 {
   font-size: calc(20px + 0.390625vw);
 }
 
-p,
-option {
+p {
   font-size: calc(15px + 0.390625vw);
 }
 a {
