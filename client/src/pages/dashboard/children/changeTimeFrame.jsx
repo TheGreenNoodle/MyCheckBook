@@ -1,7 +1,11 @@
 // utility
 import { xToCurrDate } from "../../../common/utility/date/xToCurrDate";
+
 // create a unique key
 import { v4 as uuidv4 } from "uuid";
+
+// css
+import styles from "../layout.module.css";
 
 const timeFrames = {
   "Past 30 Days": xToCurrDate(30),
@@ -14,7 +18,7 @@ const timeFrames = {
 function ChangeTimeFrame({ setTimeFrame }) {
   return (
     <select
-      className={``}
+      className={`${styles["box"]} ${styles["box--select"]}`}
       onChange={(e) => {
         const keyName = e.target.value;
         setTimeFrame({ name: keyName, dates: timeFrames[keyName] });

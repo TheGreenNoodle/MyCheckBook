@@ -1,8 +1,8 @@
 // react utility
 import { useRef } from "react";
 
-// link data
-import { named, noName } from "./link-data";
+// data
+import { linkData } from "./link-data";
 
 // create a unique key
 import { v4 as uuidv4 } from "uuid";
@@ -10,9 +10,9 @@ import { v4 as uuidv4 } from "uuid";
 // css
 import styles from "../../layout.module.css";
 
-function Link({ svg, png, alt, name, route, nameExist }) {
+function Link({ svg, png, alt, name, route }) {
   return (
-    <a className={`${styles["box"]} ${styles["box--white"]}`} href={route}>
+    <a className={`${styles["box"]} ${styles["box--white"]} `} href={route}>
       <img
         onError={({ currentTarget }) => {
           currentTarget.onError = null; // prevents looping
@@ -22,7 +22,7 @@ function Link({ svg, png, alt, name, route, nameExist }) {
         className={styles["box__icon"]}
         alt={alt}
       />
-      {nameExist ? <h2>{name}</h2> : null}
+      {name !== undefined ? <h2>{name}</h2> : null}
     </a>
   );
 }
@@ -38,11 +38,10 @@ function NavLinks({ menuToggled }) {
   return (
     <nav ref={navMenu} className={`${styles["grid"]} ${styles["grid--nav"]} `}>
       {/* Name and icons */}
-      {named.map((data) => {
+      {linkData.slice(0, 3).map((data) => {
         return (
           <Link
             key={uuidv4()}
-            nameExist={true}
             svg={data.svg}
             png={data.fallBack}
             alt={data.alt}
@@ -54,14 +53,14 @@ function NavLinks({ menuToggled }) {
 
       {/* Just icons group */}
       <div className={`${styles["grid"]} ${styles["grid--iconGroup"]}`}>
-        {noName.map((data) => {
+        {linkData.slice(3).map((data) => {
           return (
             <Link
               key={uuidv4()}
-              nameExist={false}
               svg={data.svg}
               png={data.fallBack}
               alt={data.alt}
+              name={data.name}
               route={data.route}
             />
           );

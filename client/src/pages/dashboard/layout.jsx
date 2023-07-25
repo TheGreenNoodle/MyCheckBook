@@ -21,41 +21,35 @@ function Dashboard() {
   });
 
   return (
-    <div className={styles.wrapper}>
-      <div>
+    <div
+      className={`${styles[`wrapper`]} ${
+        styles["wrapper--moneyFlowAndLineGraph"]
+      }`}>
+      <div className={`${styles["wrapper--moneyFlow"]}`}>
         <ChangeTimeFrame setTimeFrame={setTimeFrame} />
         <MoneyFlowSummary />
       </div>
 
-      <LineGraph
-        titles={{
-          main: "Income vs Spending",
-          xAxis: timeFrame.name,
-          yAxis: "USD",
-        }}
-        labels={timeFrame.dates}
-        datasets={[
-          {
-            label: "Income",
-            data: [],
-          },
-          {
-            label: "Spending",
-            data: [],
-          },
-        ]}
-      />
-
-      <PieGraph
-        titles={{
-          main: "Spending by Category",
-          xAxis: timeFrame.name,
-          yAxis: "USD",
-        }}
-        labels={["Milk", "oreo's", "apple"]}
-        currency={"USD"}
-        data={[1, 2, 3]}
-      />
+      <div className={`${styles["wrapper--lineGraph"]}`}>
+        <LineGraph
+          titles={{
+            main: "Income vs Spending",
+            xAxis: timeFrame.name,
+            yAxis: "USD",
+          }}
+          labels={timeFrame.dates}
+          datasets={[
+            {
+              label: "Income",
+              data: [],
+            },
+            {
+              label: "Spending",
+              data: [],
+            },
+          ]}
+        />
+      </div>
     </div>
   );
 }

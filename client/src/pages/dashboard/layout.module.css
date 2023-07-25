@@ -1,1 +1,39 @@
+/* wrapper block */
+.wrapper {
+  display: grid;
+  gap: 5px;
+  grid-template-columns: 100%;
+}
 
+/* wrapper modifiers */
+.wrapper--moneyFlowAndLineGraph {
+  grid-template-columns: auto 70%;
+}
+
+/* box block */
+.box {
+  background-color: white;
+  border-radius: 5px;
+  border-style: none;
+
+  margin: 0;
+  padding: 5px;
+  width: 100%;
+}
+
+/* box modifiers */
+.box--moneyFlow {
+  display: grid;
+  align-items: center;
+  height: 270px;
+  padding: 10px;
+  text-align: center;
+}
+
+/* select group */
+.box--select {
+  font-weight: 900;
+  height: 50px;
+  margin-bottom: 10px;
+  text-align: center;
+}

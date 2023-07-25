@@ -49,6 +49,8 @@
 }
 .box--white {
   background-color: white;
+  border-style: solid;
+  border-width: 1px;
 }
 
 /* box elements */

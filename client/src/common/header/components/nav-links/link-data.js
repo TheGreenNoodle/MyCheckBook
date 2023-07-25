@@ -1,5 +1,4 @@
-// names and icons links
-const named = [
+export const linkData = [
   {
     svg: "/icons/header/nav-link/svg/dashboard.svg",
     fallBack: "/icons/header/nav-link/fallback-png/dashboard.png",
@@ -21,9 +20,6 @@ const named = [
     name: "Plan a Budget",
     route: "create-budget",
   },
-];
-// just icon links
-const noName = [
   {
     svg: "/icons/header/nav-link/svg/account.svg",
     fallBack: "/icons/header/nav-link/fallback-png/account.png",
@@ -43,5 +39,3 @@ const noName = [
     route: "/",
   },
 ];
-
-export { named, noName };
