@@ -12,7 +12,7 @@ function Block({ name, moneyAmount }) {
 
 function MoneyFlowSummary() {
   return (
-    <div className={`${styles["box"]} ${styles["box--moneyFlow"]}`}>
+    <div className={`${styles["box"]} ${styles["box--moneyFlow"]} `}>
       <Block name="Income" moneyAmount={2000} />
       <hr />
       <Block name="Expenses" moneyAmount={2000} />

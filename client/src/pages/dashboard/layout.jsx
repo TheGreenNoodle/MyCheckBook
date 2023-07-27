@@ -25,31 +25,29 @@ function Dashboard() {
       className={`${styles[`wrapper`]} ${
         styles["wrapper--moneyFlowAndLineGraph"]
       }`}>
-      <div className={`${styles[`positionRelative`]}`}>
+      <div className={`${styles[`position--relative`]}`}>
         <ChangeTimeFrame setTimeFrame={setTimeFrame} />
         <MoneyFlowSummary />
       </div>
 
-      <div className={`${styles["wrapper--lineGraph"]}`}>
-        <LineGraph
-          titles={{
-            main: "Income vs Spending",
-            xAxis: timeFrame.name,
-            yAxis: "USD",
-          }}
-          labels={timeFrame.dates}
-          datasets={[
-            {
-              label: "Income",
-              data: [],
-            },
-            {
-              label: "Spending",
-              data: [],
-            },
-          ]}
-        />
-      </div>
+      <LineGraph
+        titles={{
+          main: "Income vs Spending",
+          xAxis: timeFrame.name,
+          yAxis: "USD",
+        }}
+        labels={timeFrame.dates}
+        datasets={[
+          {
+            label: "Income",
+            data: [],
+          },
+          {
+            label: "Spending",
+            data: [],
+          },
+        ]}
+      />
     </div>
   );
 }

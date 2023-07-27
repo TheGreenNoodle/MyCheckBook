@@ -56,6 +56,7 @@ function LineGraph({ labels, datasets, titles }) {
     <Wrapper>
       <Line
         options={{
+          maintainAspectRatio: false,
           plugins: {
             title: {
               display: true,
@@ -81,6 +82,7 @@ function PieGraph({ labels, titles, currency, data }) {
     <Wrapper>
       <Pie
         options={{
+          maintainAspectRatio: false,
           plugins: {
             title: {
               display: true,

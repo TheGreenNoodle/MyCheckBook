@@ -1,5 +1,5 @@
 // react utility
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 // utility
 import { xToCurrDate } from "../../../common/utility/date/xToCurrDate";
@@ -19,9 +19,22 @@ const timeFrames = {
 
 // used to change the time frame of data in dashboard
 function ChangeTimeFrame({ setTimeFrame }) {
+  const [toggled, setToggled] = useState(false);
+
+  const menu = useRef(null);
+
+  if (menu.current)
+    toggled
+      ? menu.current.classList.add(`${styles["display--none"]}`)
+      : menu.current.classList.remove(`${styles["display--none"]}`);
+
   return (
     <>
-      <button className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}>
+      <button
+        onClick={() => {
+          setToggled(!toggled);
+        }}
+        className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}>
         <h3 className={`${styles["box--dropdown__header"]}`}>Past 30 Days</h3>
         <img
           className={`${styles["box--dropdown__icon"]}`}
@@ -34,6 +47,7 @@ function ChangeTimeFrame({ setTimeFrame }) {
         />
       </button>
       <ul
+        ref={menu}
         className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}
         onChange={(e) => {
           const keyName = e.target.value;
