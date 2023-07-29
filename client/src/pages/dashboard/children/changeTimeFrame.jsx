@@ -18,7 +18,8 @@ const timeFrames = {
 };
 
 // used to change the time frame of data in dashboard
-function ChangeTimeFrame({ setTimeFrame }) {
+// can wrap around other components if need to overlay them
+function ChangeTimeFrame({ setTimeFrame, children }) {
   const [toggled, setToggled] = useState(false);
 
   const menu = useRef(null);
@@ -29,7 +30,7 @@ function ChangeTimeFrame({ setTimeFrame }) {
       : menu.current.classList.remove(`${styles["display--none"]}`);
 
   return (
-    <>
+    <div className={`${styles[`wrapper--flex`]}`}>
       <button
         onClick={() => {
           setToggled(!toggled);
@@ -46,25 +47,31 @@ function ChangeTimeFrame({ setTimeFrame }) {
           alt="dropdown-icon"
         />
       </button>
-      <ul
-        ref={menu}
-        className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}
-        onChange={(e) => {
-          const keyName = e.target.value;
-          setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
-        }}>
-        {Object.keys(timeFrames).map((keyName) => {
-          return (
-            <li key={uuidv4()} data-value={keyName}>
-              <button
-                className={`${styles["box"]}  ${styles["box--sharpCorners"]} ${styles["box--dropdown__menu__btn"]}`}>
-                <p>{keyName}</p>
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </>
+
+      <div className={styles.div}>
+        <ul
+          ref={menu}
+          className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}
+          onChange={(e) => {
+            const keyName = e.target.value;
+            setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
+          }}>
+          {Object.keys(timeFrames).map((keyName) => {
+            return (
+              <li key={uuidv4()} data-value={keyName}>
+                <button
+                  className={`${styles["box"]}  ${styles["box--sharpCorners"]} ${styles["box--dropdown__menu__btn"]}`}>
+                  <p>{keyName}</p>
+                </button>
+              </li>
+            );
+          })}
+        </ul>
+
+        {/* an element we want overladed */}
+        {children}
+      </div>
+    </div>
   );
 }
 

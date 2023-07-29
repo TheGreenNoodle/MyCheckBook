@@ -21,14 +21,10 @@ function Dashboard() {
   });
 
   return (
-    <div
-      className={`${styles[`wrapper`]} ${
-        styles["wrapper--moneyFlowAndLineGraph"]
-      }`}>
-      <div className={`${styles[`position--relative`]}`}>
-        <ChangeTimeFrame setTimeFrame={setTimeFrame} />
+    <div className={`${styles[`wrapper--grid`]}`}>
+      <ChangeTimeFrame setTimeFrame={setTimeFrame}>
         <MoneyFlowSummary />
-      </div>
+      </ChangeTimeFrame>
 
       <LineGraph
         titles={{

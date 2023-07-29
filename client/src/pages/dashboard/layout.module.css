@@ -1,17 +1,18 @@
 /* wrapper block */
-.wrapper {
+.wrapper--grid {
   display: grid;
-  gap: 5px;
-  grid-template-columns: 100%;
+  grid-template-columns: 20% auto;
+  height: 400px;
 }
 
-/* wrapper modifiers */
-.wrapper--moneyFlowAndLineGraph {
-  background-color: black;
-  gap: 10px;
-  grid-template-columns: auto 70%;
-  grid-auto-rows: 600px;
-  margin-bottom: 10px;
+.wrapper--flex {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+.div {
+  flex: 1 1 auto;
+  position: relative;
 }
 
 /* box block */
@@ -36,18 +37,17 @@
   align-items: center;
   display: grid;
   padding: 10px;
-  position: absolute;
-  top: 70px;
-  z-index: -1;
 }
 
 /* dropdown group */
 .box--dropdown__btn {
   align-items: center;
   display: flex;
+  flex: 0 0 60px;
   font-weight: 900;
-  height: 60px;
+
   justify-content: center;
+  margin-bottom: 10px;
 }
 .box--dropdown__btn:hover {
   outline-style: solid;
@@ -64,12 +64,13 @@
 
 /* dropdown menu group */
 .box--dropdown__menu {
+  position: absolute;
   display: grid;
-  gap: 5px;
-  grid-auto-rows: 1fr;
 
-  list-style-type: none;
-  margin-top: 10px;
+  gap: 5px;
+
+  bottom: 0;
+
   overflow: hidden;
   padding: 0;
 }
@@ -84,9 +85,4 @@
 /* display block */
 .display--none {
   display: none;
-}
-
-/* position block */
-.position--relative {
-  position: relative;
 }
