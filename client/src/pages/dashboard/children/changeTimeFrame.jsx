@@ -18,9 +18,10 @@ const timeFrames = {
 };
 
 // used to change the time frame of data in dashboard
-// can wrap around other components if need to overlay them
+// can wrap around other components if need the dropdown menu to overlay them
 function ChangeTimeFrame({ setTimeFrame, children }) {
   const [toggled, setToggled] = useState(false);
+  const [menuHeaderText, setMenuHeaderText] = useState("Past 30 Days");
 
   const menu = useRef(null);
 
@@ -30,13 +31,15 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
       : menu.current.classList.remove(`${styles["display--none"]}`);
 
   return (
-    <div className={`${styles[`wrapper--flex`]}`}>
+    <div className={`${styles[`wrapper--changeTimeFrame`]}`}>
       <button
         onClick={() => {
           setToggled(!toggled);
         }}
         className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}>
-        <h3 className={`${styles["box--dropdown__header"]}`}>Past 30 Days</h3>
+        <h3 className={`${styles["box--dropdown__header"]}`}>
+          {menuHeaderText}
+        </h3>
         <img
           className={`${styles["box--dropdown__icon"]}`}
           onError={({ currentTarget }) => {
@@ -48,20 +51,22 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
         />
       </button>
 
-      <div className={styles.div}>
+      <div className={`${styles["wrapper--changeTimeFrame__menuAndChildren"]}`}>
         <ul
           ref={menu}
-          className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}
-          onChange={(e) => {
-            const keyName = e.target.value;
-            setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
-          }}>
+          className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}>
           {Object.keys(timeFrames).map((keyName) => {
             return (
-              <li key={uuidv4()} data-value={keyName}>
+              <li key={uuidv4()}>
                 <button
-                  className={`${styles["box"]}  ${styles["box--sharpCorners"]} ${styles["box--dropdown__menu__btn"]}`}>
-                  <p>{keyName}</p>
+                  onClick={(e) => {
+                    const keyName = e.target.value;
+                    setMenuHeaderText(keyName);
+                    setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
+                  }}
+                  className={`${styles["box"]}  ${styles["box--sharpCorners"]} ${styles["box--dropdown__menu__btn"]}`}
+                  value={keyName}>
+                  {keyName}
                 </button>
               </li>
             );

@@ -32,7 +32,8 @@ h3 {
   font-size: calc(20px + 0.390625vw);
 }
 
-p {
+p,
+button {
   font-size: calc(15px + 0.390625vw);
 }
 a {

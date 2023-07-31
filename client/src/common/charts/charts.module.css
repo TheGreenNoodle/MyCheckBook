@@ -1,5 +1,10 @@
 .wrapper {
-  background-color: green;
+  align-items: center;
+  border-radius: 5px;
+  border-style: solid;
+
+  padding: 10px;
+  box-sizing: border-box;
   position: relative;
   width: 100%;
 }

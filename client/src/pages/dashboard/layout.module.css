@@ -1,16 +1,17 @@
 /* wrapper block */
-.wrapper--grid {
+.wrapper--layout {
   display: grid;
-  grid-template-columns: 20% auto;
-  height: 400px;
+  gap: 10px;
+  grid-template-columns: auto 80%;
+  height: 500px;
+  width: 100%;
 }
-
-.wrapper--flex {
+.wrapper--changeTimeFrame {
   display: flex;
   flex-flow: column;
   height: 100%;
 }
-.div {
+.wrapper--changeTimeFrame__menuAndChildren {
   flex: 1 1 auto;
   position: relative;
 }
@@ -45,7 +46,6 @@
   display: flex;
   flex: 0 0 60px;
   font-weight: 900;
-
   justify-content: center;
   margin-bottom: 10px;
 }
@@ -64,15 +64,12 @@
 
 /* dropdown menu group */
 .box--dropdown__menu {
-  position: absolute;
-  display: grid;
-
-  gap: 5px;
-
   bottom: 0;
+  display: grid;
 
   overflow: hidden;
   padding: 0;
+  position: absolute;
 }
 
 .box--dropdown__menu__btn:hover {
@@ -85,4 +82,8 @@
 /* display block */
 .display--none {
   display: none;
+}
+
+/* making wrappers responsive */
+@media (max-width: "") {
 }

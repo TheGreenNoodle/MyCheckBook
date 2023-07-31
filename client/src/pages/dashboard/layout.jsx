@@ -21,7 +21,8 @@ function Dashboard() {
   });
 
   return (
-    <div className={`${styles[`wrapper--grid`]}`}>
+    <div className={`${styles[`wrapper--layout`]}`}>
+      {/* MoneyFlowSummary is wrapped because ChangeTimeFrames dropdown menu needs to display over the top of it. ChangeTimeFrame can be wrapped around components and all of its children will positioned underneath the dropdown menu. */}
       <ChangeTimeFrame setTimeFrame={setTimeFrame}>
         <MoneyFlowSummary />
       </ChangeTimeFrame>
