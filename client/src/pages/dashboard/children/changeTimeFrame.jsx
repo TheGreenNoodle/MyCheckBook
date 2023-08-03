@@ -18,7 +18,7 @@ const timeFrames = {
 };
 
 // used to change the time frame of data in dashboard
-// can wrap around other components if need the dropdown menu to overlay them
+// can wrap around other components and have the dropdown menu overlay them
 function ChangeTimeFrame({ setTimeFrame, children }) {
   const [toggled, setToggled] = useState(false);
   const [menuHeaderText, setMenuHeaderText] = useState("Past 30 Days");
@@ -27,11 +27,11 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
 
   if (menu.current)
     toggled
-      ? menu.current.classList.add(`${styles["display--none"]}`)
-      : menu.current.classList.remove(`${styles["display--none"]}`);
+      ? menu.current.classList.remove(`${styles["display--none"]}`)
+      : menu.current.classList.add(`${styles["display--none"]}`);
 
   return (
-    <div className={`${styles[`wrapper--changeTimeFrame`]}`}>
+    <div className={`${styles[`changeTimeFrame`]}`}>
       <button
         onClick={() => {
           setToggled(!toggled);
@@ -51,10 +51,10 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
         />
       </button>
 
-      <div className={`${styles["wrapper--changeTimeFrame__menuAndChildren"]}`}>
+      <div className={`${styles["changeTimeFrame__menuAndChildren"]}`}>
         <ul
           ref={menu}
-          className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}>
+          className={`${styles["box"]} ${styles["box--dropdown__menu"]} ${styles["display--none"]}`}>
           {Object.keys(timeFrames).map((keyName) => {
             return (
               <li key={uuidv4()}>

@@ -1,23 +1,39 @@
 // css
 import styles from "../layout.module.css";
 
-function Block({ name, moneyAmount }) {
+// {isIncome ? ${styles["box--green"]} : ${styles["box--red"]} }
+
+function Block({ name, moneyAmount, isIncome, isNetProfit }) {
   return (
-    <>
+    <div
+      className={`${styles["box"]}  ${styles["box--moneyFlow"]} ${
+        styles["box--moneyFlow__block"]
+      } ${
+        isNetProfit
+          ? isIncome
+            ? styles["box--green"]
+            : styles["box--red"]
+          : isIncome
+          ? styles["box--green"]
+          : styles["box--red"]
+      }`}>
       <h3>{name}</h3>
       <p>${moneyAmount}</p>
-    </>
+    </div>
   );
 }
 
 function MoneyFlowSummary() {
   return (
     <div className={`${styles["box"]} ${styles["box--moneyFlow"]} `}>
-      <Block name="Income" moneyAmount={2000} />
-      <hr />
-      <Block name="Expenses" moneyAmount={2000} />
-      <hr />
-      <Block name="Net Profit" moneyAmount={2000} />
+      <Block name="Income" moneyAmount={2000} isIncome={true} />
+      <Block name="Expenses" moneyAmount={2000} isIncome={false} />
+      <Block
+        name="Net Profit"
+        moneyAmount={2000}
+        isIncome={true}
+        isNetProfit={true}
+      />
     </div>
   );
 }

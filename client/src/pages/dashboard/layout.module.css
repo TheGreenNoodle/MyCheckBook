@@ -1,17 +1,23 @@
-/* wrapper block */
-.wrapper--layout {
+/* wrappers */
+/* layout block */
+.layout {
   display: grid;
   gap: 10px;
-  grid-template-columns: auto 80%;
+
   height: 500px;
   width: 100%;
 }
-.wrapper--changeTimeFrame {
+/* layout modifiers */
+.layout--sectionOne {
+  grid-template-columns: auto 80%;
+}
+
+.changeTimeFrame {
   display: flex;
   flex-flow: column;
   height: 100%;
 }
-.wrapper--changeTimeFrame__menuAndChildren {
+.changeTimeFrame__menuAndChildren {
   flex: 1 1 auto;
   position: relative;
 }
@@ -30,15 +36,38 @@
 }
 
 /* box modifiers */
+
+.box--green,
+.box--red {
+  color: white;
+}
+.box--green {
+  background-color: #306030;
+}
+.box--red {
+  background-color: #fd5240;
+}
+
 .box--sharpCorners {
   border-radius: 0;
 }
 
+/* moneyFlow group */
 .box--moneyFlow {
   align-items: center;
-  display: grid;
+  display: flex;
+  flex-flow: column;
+  gap: 7px;
+  justify-content: center;
   padding: 10px;
 }
+.box--moneyFlow__block {
+  gap: 5px;
+  height: 100%;
+  justify-content: center;
+  width: 100%;
+}
+/* moneyFlow group end */
 
 /* dropdown group */
 .box--dropdown__btn {
@@ -65,7 +94,6 @@
 /* dropdown menu group */
 .box--dropdown__menu {
   bottom: 0;
-  display: grid;
 
   overflow: hidden;
   padding: 0;
@@ -85,5 +113,41 @@
 }
 
 /* making wrappers responsive */
-@media (max-width: "") {
+@media (max-width: 900px) {
+  .layout--sectionOne {
+    grid-template-columns: auto 75%;
+  }
+}
+
+@media (max-width: 750px) {
+  .layout--sectionOne {
+    grid-template-columns: auto 72%;
+  }
+}
+
+@media (max-width: 700px) {
+  .layout--sectionOne {
+    grid-template-columns: 100%;
+    grid-template-rows: 150px auto;
+  }
+  .changeTimeFrame,
+  .box--moneyFlow {
+    flex-flow: row;
+  }
+  .box--dropdown__btn {
+    flex: 0 0 25%;
+  }
+  .box--moneyFlow__block {
+    flex-flow: column;
+  }
+  .box--dropdown__btn {
+    width: 200px;
+    margin: 0 10px 0 0;
+  }
+}
+
+@media (max-width: 550px) {
+  .changeTimeFrame {
+    flex-wrap: wrap;
+  }
 }
