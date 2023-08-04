@@ -14,7 +14,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Header />
-    <Dashboard />
+    <div className="body">
+      <Dashboard />
+    </div>
   </React.StrictMode>
 );
 

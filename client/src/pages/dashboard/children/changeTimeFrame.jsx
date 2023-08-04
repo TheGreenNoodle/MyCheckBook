@@ -33,10 +33,10 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
   return (
     <div className={`${styles[`changeTimeFrame`]}`}>
       <button
+        className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}
         onClick={() => {
           setToggled(!toggled);
-        }}
-        className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}>
+        }}>
         <h3 className={`${styles["box--dropdown__header"]}`}>
           {menuHeaderText}
         </h3>
@@ -64,7 +64,7 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
                     setMenuHeaderText(keyName);
                     setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
                   }}
-                  className={`${styles["box"]}  ${styles["box--sharpCorners"]} ${styles["box--dropdown__menu__btn"]}`}
+                  className={`${styles["box"]} ${styles["box--dropdown__menu__btn"]}`}
                   value={keyName}>
                   {keyName}
                 </button>

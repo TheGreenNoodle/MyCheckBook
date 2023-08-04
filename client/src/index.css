@@ -4,6 +4,7 @@ html {
   box-sizing: border-box;
   color: black;
   font-family: "Cormorant Garamond", serif;
+  margin: auto;
   padding: 5px;
 }
 * {
@@ -47,6 +48,19 @@ hr {
 
 img {
   font-size: 10px;
+}
+
+@media (min-width: 1700px) {
+  /* grid modifiers */
+  html {
+    width: 1500px;
+  }
+}
+@media (max-width: 1500px) {
+  /* grid modifiers */
+  html {
+    width: initial;
+  }
 }
 
 /* media query's */

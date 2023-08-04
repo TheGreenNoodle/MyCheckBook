@@ -61,26 +61,6 @@
 }
 
 /* media query's */
-@media (min-width: 1700px) {
-  /* grid modifiers */
-  .grid--main {
-    width: 1500px;
-  }
-}
-@media (max-width: 1700px) {
-  /* grid modifiers */
-  .grid--main {
-    width: 80%;
-  }
-}
-
-@media (max-width: 1500px) {
-  /* grid modifiers */
-  .grid--main {
-    width: initial;
-  }
-}
-
 @media (max-width: 900px) {
   /* box modifiers */
   .box--dropdown {

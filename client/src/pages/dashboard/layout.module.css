@@ -16,6 +16,7 @@
   display: flex;
   flex-flow: column;
   height: 100%;
+  position: relative;
 }
 .changeTimeFrame__menuAndChildren {
   flex: 1 1 auto;
@@ -36,22 +37,6 @@
 }
 
 /* box modifiers */
-
-.box--green,
-.box--red {
-  color: white;
-}
-.box--green {
-  background-color: #306030;
-}
-.box--red {
-  background-color: #fd5240;
-}
-
-.box--sharpCorners {
-  border-radius: 0;
-}
-
 /* moneyFlow group */
 .box--moneyFlow {
   align-items: center;
@@ -72,34 +57,39 @@
 /* dropdown group */
 .box--dropdown__btn {
   align-items: center;
-  display: flex;
+  display: grid;
   flex: 0 0 60px;
   font-weight: 900;
+  grid-template-columns: 80% auto;
   justify-content: center;
   margin-bottom: 10px;
+  padding: 10px;
 }
 .box--dropdown__btn:hover {
   outline-style: solid;
 }
 
-.box--dropdown__header {
-  display: inline-block;
-  width: 70%;
-}
 .box--dropdown__icon {
-  height: 30px;
-  width: 30px;
+  aspect-ratio: 1/1;
+  height: 40px;
 }
 
 /* dropdown menu group */
 .box--dropdown__menu {
   bottom: 0;
+  display: grid;
+  gap: 5px;
 
+  list-style-type: none;
   overflow: hidden;
-  padding: 0;
+
   position: absolute;
 }
+.box--dropdown__menu__btn {
+  border-style: solid;
 
+  margin: 0;
+}
 .box--dropdown__menu__btn:hover {
   background-color: black;
   color: white;
@@ -126,28 +116,52 @@
 }
 
 @media (max-width: 700px) {
+  .box--dropdown__menu {
+    grid-template-columns: 1fr 1fr;
+  }
+  .line {
+    border-style: none solid none none;
+    height: 100%;
+    width: 0;
+  }
   .layout--sectionOne {
     grid-template-columns: 100%;
-    grid-template-rows: 150px auto;
+    grid-template-rows: 100px auto;
   }
   .changeTimeFrame,
+  .box--dropdown__menu,
   .box--moneyFlow {
     flex-flow: row;
   }
-  .box--dropdown__btn {
-    flex: 0 0 25%;
-  }
+
   .box--moneyFlow__block {
     flex-flow: column;
   }
   .box--dropdown__btn {
-    width: 200px;
+    flex: 0 0 25%;
     margin: 0 10px 0 0;
+    width: 200px;
   }
 }
 
 @media (max-width: 550px) {
+  .box--dropdown__btn {
+    flex: 0 0 35%;
+    margin: 0 0 10px 0;
+    width: 100%;
+  }
   .changeTimeFrame {
-    flex-wrap: wrap;
+    flex-flow: column;
+  }
+
+  .layout--sectionOne {
+    grid-template-columns: 100%;
+    grid-template-rows: 200px auto;
+  }
+  .layout {
+    height: 700px;
+  }
+  .box--moneyFlow {
+    padding: 5px;
   }
 }

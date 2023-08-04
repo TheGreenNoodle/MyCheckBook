@@ -41,7 +41,7 @@ Chart.register(
 
 // wrapper to allow responsive graphs
 function Wrapper({ children }) {
-  return <div className={chart.wrapper}>{children}</div>;
+  return <div className={chart.makeResponsive}>{children}</div>;
 }
 
 function LineGraph({ labels, datasets, titles }) {
@@ -51,7 +51,9 @@ function LineGraph({ labels, datasets, titles }) {
     datasets: datasets,
     titles: titles,
   });
-
+  // hex codes i want to use to show growth and decay
+  //   #306030;
+  // #fd5240;
   return (
     <Wrapper>
       <Line
