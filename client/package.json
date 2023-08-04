@@ -39,6 +39,7 @@
     ]
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "eslint-plugin-jest-dom": "^5.0.1",
     "msw": "^1.2.2",
     "react-scripts": "5.0.1",

@@ -4,6 +4,9 @@ import { useState } from "react";
 // utility
 import { xToCurrDate } from "../../common/utility/date/xToCurrDate";
 
+// testing utility remove
+import { createFakeData } from "../../common/utility/createFakeData";
+
 // child components of layout
 import { ChangeTimeFrame } from "./children/changeTimeFrame";
 import { MoneyFlowSummary } from "./children/moneyFlowSummary";
@@ -19,6 +22,11 @@ function Dashboard() {
     name: "Past 30 Days",
     dates: xToCurrDate(30),
   });
+
+  //remove
+  const fakeMoney = new createFakeData();
+
+  console.log(fakeMoney.cashFlow(timeFrame.dates));
 
   return (
     <>

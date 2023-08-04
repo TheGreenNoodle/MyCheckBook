@@ -16,7 +16,7 @@
 
 .grid--main {
   grid-template-columns: 45% auto;
-  margin: 0 auto 20px;
+  margin: 0 auto 10px;
 }
 .grid--nav {
   grid-auto-rows: 1fr;
@@ -56,7 +56,7 @@
 /* box elements */
 .box__icon {
   aspect-ratio: 1 / 1;
-  margin: 2px;
+  margin: 5px;
   width: calc(45px + 0.390625vw);
 }
 
