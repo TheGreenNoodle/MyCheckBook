@@ -60,6 +60,16 @@
   width: calc(45px + 0.390625vw);
 }
 
+/* delate */
+.display--none {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .display--none {
+    display: inherit;
+  }
+}
 /* media query's */
 @media (max-width: 900px) {
   /* box modifiers */
@@ -88,9 +98,4 @@
   .grid__title {
     aspect-ratio: 3 / 1.5;
   }
-}
-
-/* delate */
-.display--none {
-  display: none;
 }

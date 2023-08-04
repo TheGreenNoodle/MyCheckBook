@@ -3,9 +3,7 @@
 .layout {
   display: grid;
   gap: 10px;
-
   height: 500px;
-  width: 100%;
 }
 /* layout modifiers */
 .layout--sectionOne {
@@ -15,6 +13,7 @@
 .changeTimeFrame {
   display: flex;
   flex-flow: column;
+  gap: 10px;
   height: 100%;
   position: relative;
 }
@@ -28,7 +27,6 @@
   background-color: white;
   border-radius: 5px;
   border-style: none;
-
   height: 100%;
   margin: 0;
   padding: 5px;
@@ -48,9 +46,7 @@
 }
 .box--moneyFlow__block {
   gap: 5px;
-  height: 100%;
   justify-content: center;
-  width: 100%;
 }
 /* moneyFlow group end */
 
@@ -59,10 +55,8 @@
   align-items: center;
   display: grid;
   flex: 0 0 60px;
-  font-weight: 900;
   grid-template-columns: 80% auto;
   justify-content: center;
-  margin-bottom: 10px;
   padding: 10px;
 }
 .box--dropdown__btn:hover {
@@ -79,16 +73,11 @@
   bottom: 0;
   display: grid;
   gap: 5px;
-
   list-style-type: none;
-  overflow: hidden;
-
   position: absolute;
 }
 .box--dropdown__menu__btn {
   border-style: solid;
-
-  margin: 0;
 }
 .box--dropdown__menu__btn:hover {
   background-color: black;
@@ -108,60 +97,54 @@
     grid-template-columns: auto 75%;
   }
 }
-
 @media (max-width: 750px) {
   .layout--sectionOne {
     grid-template-columns: auto 72%;
   }
 }
-
 @media (max-width: 700px) {
   .box--dropdown__menu {
     grid-template-columns: 1fr 1fr;
+  }
+  .box--dropdown__menu,
+  .box--moneyFlow,
+  .changeTimeFrame {
+    flex-flow: row;
+  }
+  .box--dropdown__btn {
+    flex: 0 0 25%;
+    width: 200px;
+  }
+  .box--moneyFlow__block {
+    flex-flow: column;
+  }
+  .layout--sectionOne {
+    grid-template-columns: 100%;
+    grid-template-rows: 100px auto;
   }
   .line {
     border-style: none solid none none;
     height: 100%;
     width: 0;
   }
-  .layout--sectionOne {
-    grid-template-columns: 100%;
-    grid-template-rows: 100px auto;
-  }
-  .changeTimeFrame,
-  .box--dropdown__menu,
-  .box--moneyFlow {
-    flex-flow: row;
-  }
-
-  .box--moneyFlow__block {
-    flex-flow: column;
-  }
-  .box--dropdown__btn {
-    flex: 0 0 25%;
-    margin: 0 10px 0 0;
-    width: 200px;
-  }
 }
 
 @media (max-width: 550px) {
   .box--dropdown__btn {
     flex: 0 0 35%;
-    margin: 0 0 10px 0;
     width: 100%;
+  }
+  .box--moneyFlow {
+    padding: 5px;
   }
   .changeTimeFrame {
     flex-flow: column;
   }
-
-  .layout--sectionOne {
-    grid-template-columns: 100%;
-    grid-template-rows: 200px auto;
-  }
   .layout {
     height: 700px;
   }
-  .box--moneyFlow {
-    padding: 5px;
+  .layout--sectionOne {
+    grid-template-columns: 100%;
+    grid-template-rows: 200px auto;
   }
 }
