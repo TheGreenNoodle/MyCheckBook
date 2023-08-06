@@ -4,7 +4,9 @@ import { DateBuilder } from "./dateBuilder";
 // creates an array of dates x number of days back from the current date
 // input is the number of days you want to go back from the current date
 // the array starts at the earliest date and goes all the way up to the current date
-function xToCurrDate(daysBack) {
+
+// store as a date as unix code
+function createArrayOfDates(daysBack) {
   let output = [];
 
   // starts on current date
@@ -36,4 +38,4 @@ function xToCurrDate(daysBack) {
   return output;
 }
 
-export { xToCurrDate };
+export { createArrayOfDates };

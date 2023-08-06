@@ -39,6 +39,10 @@ class DateBuilder {
       "YYYY-MM"
     ).daysInMonth();
   }
+
+  // conversions
+  convertDateToUnix(date) {}
+  convertUnixToDate(unix) {}
 }
 
 export { DateBuilder };

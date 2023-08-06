@@ -2,7 +2,7 @@
 import { useState, useRef } from "react";
 
 // utility
-import { xToCurrDate } from "../../../common/utility/date/xToCurrDate";
+import { createArrayOfDates } from "../../../common/utility/date/createArrayOfDates";
 
 // create a unique key
 import { v4 as uuidv4 } from "uuid";
@@ -11,9 +11,9 @@ import { v4 as uuidv4 } from "uuid";
 import styles from "../layout.module.css";
 
 const timeFrames = {
-  "Past 30 Days": xToCurrDate(30),
-  "Past 90 Days": xToCurrDate(90),
-  "Past Year": xToCurrDate(365),
+  "Past 30 Days": createArrayOfDates(30),
+  "Past 90 Days": createArrayOfDates(90),
+  "Past Year": createArrayOfDates(365),
   "All Time": [],
 };
 

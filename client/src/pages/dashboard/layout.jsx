@@ -2,7 +2,7 @@
 import { useState } from "react";
 
 // utility
-import { xToCurrDate } from "../../common/utility/date/xToCurrDate";
+import { createArrayOfDates } from "../../common/utility/date/createArrayOfDates";
 
 // testing utility remove
 import { createFakeData } from "../../common/utility/createFakeData";
@@ -20,18 +20,16 @@ import styles from "./layout.module.css";
 function Dashboard() {
   const [timeFrame, setTimeFrame] = useState({
     name: "Past 30 Days",
-    dates: xToCurrDate(30),
+    dates: createArrayOfDates(30),
   });
 
   //remove
   const fakeMoney = new createFakeData();
 
-  console.log(fakeMoney.cashFlow(timeFrame.dates));
-
   return (
     <>
       <div className={`${styles[`layout`]} ${styles["layout--sectionOne"]}`}>
-        {/* MoneyFlowSummary is wrapped because ChangeTimeFrames dropdown menu needs to display over the top of it. ChangeTimeFrame can be wrapped around components and all of its children will positioned underneath the dropdown menu. */}
+        {/* MoneyFlowSummary is wrapped because ChangeTimeFrames dropdown menu needs to display over the top of it. ChangeTimeFrame can be wrapped around components and all of it`s children will positioned underneath the dropdown menu. */}
         <ChangeTimeFrame setTimeFrame={setTimeFrame}>
           <MoneyFlowSummary />
         </ChangeTimeFrame>
@@ -46,11 +44,15 @@ function Dashboard() {
           datasets={[
             {
               label: "Income",
-              data: [],
+              data: fakeMoney.cashFlow(timeFrame.dates),
+              backgroundColor: "#306030",
+              borderColor: "#306030",
             },
             {
               label: "Spending",
-              data: [],
+              data: fakeMoney.cashFlow(timeFrame.dates),
+              backgroundColor: "#fd5240",
+              borderColor: "#fd5240",
             },
           ]}
         />

@@ -1,8 +1,8 @@
-import { xToCurrDate } from "./xToCurrDate";
+import { createArrayOfDates } from "./createArrayOfDates";
 
-describe("xToCurrDate", () => {
+describe("createArrayOfDates", () => {
   test("decreases dates in correct order", () => {
-    const output = xToCurrDate(365);
+    const output = createArrayOfDates(365);
     expect(output.length).toBe(365);
 
     const length = output.length - 1;

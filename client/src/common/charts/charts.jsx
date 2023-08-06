@@ -40,8 +40,15 @@ Chart.register(
 );
 
 // wrapper to allow responsive graphs
-function Wrapper({ children }) {
-  return <div className={chart.makeResponsive}>{children}</div>;
+function Wrapper({ children, hasBackground }) {
+  return (
+    <div
+      className={`${chart["makeResponsive"]} ${
+        hasBackground ? chart["makeResponsive--white"] : null
+      }`}>
+      {children}
+    </div>
+  );
 }
 
 function LineGraph({ labels, datasets, titles }) {
@@ -51,14 +58,13 @@ function LineGraph({ labels, datasets, titles }) {
     datasets: datasets,
     titles: titles,
   });
-  // hex codes i want to use to show growth and decay
-  //   #306030;
-  // #fd5240;
+
   return (
-    <Wrapper>
+    <Wrapper hasBackground={true}>
       <Line
         options={{
           maintainAspectRatio: false,
+          spanGaps: true,
           plugins: {
             title: {
               display: true,
