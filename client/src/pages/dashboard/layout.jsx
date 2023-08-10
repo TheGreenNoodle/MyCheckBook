@@ -4,9 +4,6 @@ import { useState } from "react";
 // utility
 import { createArrayOfDates } from "../../common/utility/date/createArrayOfDates";
 
-// testing utility remove
-import { createFakeData } from "../../common/utility/createFakeData";
-
 // child components of layout
 import { ChangeTimeFrame } from "./children/changeTimeFrame";
 import { MoneyFlowSummary } from "./children/moneyFlowSummary";
@@ -22,9 +19,6 @@ function Dashboard() {
     name: "Past 30 Days",
     dates: createArrayOfDates(30),
   });
-
-  //remove
-  const fakeMoney = new createFakeData();
 
   return (
     <>
@@ -44,13 +38,13 @@ function Dashboard() {
           datasets={[
             {
               label: "Income",
-              data: fakeMoney.cashFlow(timeFrame.dates),
+              data: timeFrame.dates,
               backgroundColor: "#306030",
               borderColor: "#306030",
             },
             {
               label: "Spending",
-              data: fakeMoney.cashFlow(timeFrame.dates),
+              data: timeFrame.dates,
               backgroundColor: "#fd5240",
               borderColor: "#fd5240",
             },

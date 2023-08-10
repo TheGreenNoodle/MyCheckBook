@@ -12,6 +12,7 @@ import {
 
 // line graph utility
 import { LineController, LineElement, PointElement } from "chart.js";
+import { generateTrend } from "../../common/utility/date/generateTrend";
 
 // pie graph utility
 import { PieController, ArcElement } from "chart.js";
@@ -58,6 +59,11 @@ function LineGraph({ labels, datasets, titles }) {
     datasets: datasets,
     titles: titles,
   });
+
+  for (let line of datasets) {
+    line.data = generateTrend(line.data);
+  }
+  console.log(datasets[0].data);
 
   return (
     <Wrapper hasBackground={true}>
