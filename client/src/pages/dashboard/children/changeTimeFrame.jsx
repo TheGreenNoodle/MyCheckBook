@@ -73,7 +73,7 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
           })}
         </ul>
 
-        {/* an element we want overladed */}
+        {/* elements that are overladed */}
         {children}
       </div>
     </div>

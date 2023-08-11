@@ -14,7 +14,8 @@ class createFakeData {
 
       if (3 < randomInt) {
         output.push({
-          [date]: Number(
+          date: date,
+          cash: Number(
             faker.finance.amount({
               min: cashMin,
               max: cashMax,

@@ -11,6 +11,9 @@ import { MoneyFlowSummary } from "./children/moneyFlowSummary";
 // graphs
 import { LineGraph, PieGraph } from "../../common/charts/charts";
 
+// testing remove
+import { createFakeData } from "../../common/utility/createFakeData";
+
 // css
 import styles from "./layout.module.css";
 
@@ -20,6 +23,10 @@ function Dashboard() {
     dates: createArrayOfDates(30),
   });
 
+  // remove
+  const moneyByDate = new createFakeData();
+
+  // console.log(moneyByDate.cashFlow(timeFrame.dates, 1, 100));
   return (
     <>
       <div className={`${styles[`layout`]} ${styles["layout--sectionOne"]}`}>
@@ -38,13 +45,13 @@ function Dashboard() {
           datasets={[
             {
               label: "Income",
-              data: timeFrame.dates,
+              data: moneyByDate.cashFlow(timeFrame.dates, 1, 100),
               backgroundColor: "#306030",
               borderColor: "#306030",
             },
             {
               label: "Spending",
-              data: timeFrame.dates,
+              data: moneyByDate.cashFlow(timeFrame.dates, 1, 100),
               backgroundColor: "#fd5240",
               borderColor: "#fd5240",
             },

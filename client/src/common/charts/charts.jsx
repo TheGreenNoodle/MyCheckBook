@@ -1,4 +1,3 @@
-// common utility functions
 // chartJS
 import {
   Chart,
@@ -12,7 +11,7 @@ import {
 
 // line graph utility
 import { LineController, LineElement, PointElement } from "chart.js";
-import { generateTrend } from "../../common/utility/date/generateTrend";
+import { generateTrend } from "./generateTrend";
 
 // pie graph utility
 import { PieController, ArcElement } from "chart.js";
@@ -60,10 +59,14 @@ function LineGraph({ labels, datasets, titles }) {
     titles: titles,
   });
 
-  for (let line of datasets) {
-    line.data = generateTrend(line.data);
-  }
-  console.log(datasets[0].data);
+  let data = datasets;
+
+  // for (let line of datasets) {
+  //   const temp = line.data;
+  //   line.data = generateTrend(temp);
+  // }
+  // console.log(datasets[0]);
+  console.log(generateTrend(data[0].data));
 
   return (
     <Wrapper hasBackground={true}>
