@@ -1,3 +1,5 @@
+import { useReducer } from "react";
+
 // chartJS
 import {
   Chart,
@@ -59,18 +61,16 @@ function LineGraph({ labels, datasets, titles }) {
     titles: titles,
   });
 
-  let data = datasets;
-
-  // for (let line of datasets) {
-  //   const temp = line.data;
-  //   line.data = generateTrend(temp);
-  // }
-  // console.log(datasets[0]);
-  console.log(generateTrend(data[0].data));
+  const [state, dispatch] = useReducer(generateTrend, datasets);
 
   return (
     <Wrapper hasBackground={true}>
       <Line
+        onClick={() => {
+          dispatch(state);
+
+          console.log(state);
+        }}
         options={{
           maintainAspectRatio: false,
           spanGaps: true,

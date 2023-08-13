@@ -15,7 +15,6 @@ function createArrayOfDates(daysBack) {
   for (let i = daysBack; i !== 0; i--) {
     output.push(date.currDate);
 
-    // subtract 1 from day
     date.decrementDay();
 
     if (date.day === 0) {
