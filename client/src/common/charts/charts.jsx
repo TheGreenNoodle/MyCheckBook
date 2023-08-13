@@ -68,7 +68,6 @@ function LineGraph({ labels, datasets, titles }) {
       <Line
         onClick={() => {
           dispatch(state);
-
           console.log(state);
         }}
         options={{

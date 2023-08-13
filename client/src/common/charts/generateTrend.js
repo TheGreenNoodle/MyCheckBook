@@ -8,6 +8,8 @@
 // want to have data be x and cash be y. Y is the current value at the date plus all prev values.
 
 function generateTrend(dataset) {
+  dataset[0].data.push("end of 0");
+  dataset[1].data.push("end of 1");
   // concat all objects arrays into one long array
   // save end points of each array in a object so that later on they can be sliced back to there original sizes and returned to there respective datasets
   let combineArrays = [];
@@ -42,7 +44,7 @@ function generateTrend(dataset) {
   // for (let endOfArray = 0; endOfArray < combineArrays.length; endOfArray++) {
   //   let startOfArray,
   //     datasetIndex = 0;
-
+  //   console.log(combineArrays);
   //   if (endOfArrays[datasetIndex] === endOfArray) {
   //     dataset[datasetIndex].data = combineArrays.slice(
   //       startOfArray,
@@ -52,7 +54,7 @@ function generateTrend(dataset) {
   //     startOfArray = endOfArray;
   //   }
   // }
-  console.log("first");
+
   dataset[0].data = combineArrays;
 
   return dataset;
