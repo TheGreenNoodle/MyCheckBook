@@ -13,6 +13,7 @@ import { LineGraph, PieGraph } from "../../common/charts/charts";
 
 // testing remove
 import { createFakeData } from "../../common/utility/createFakeData";
+import { generateTrend } from "../../common/charts/generateTrend";
 
 // css
 import styles from "./layout.module.css";
@@ -25,13 +26,15 @@ function Dashboard() {
 
   // remove
   const moneyByDate = new createFakeData();
+  const income = moneyByDate.overallCashFlow(timeFrame.dates);
+  const expenses = moneyByDate.overallCashFlow(timeFrame.dates);
 
   return (
     <>
       <div className={`${styles[`layout`]} ${styles["layout--sectionOne"]}`}>
         {/* MoneyFlowSummary is wrapped because ChangeTimeFrames dropdown menu needs to display over the top of it. ChangeTimeFrame can be wrapped around components and all of it`s children will positioned underneath the dropdown menu. */}
         <ChangeTimeFrame setTimeFrame={setTimeFrame}>
-          <MoneyFlowSummary />
+          <MoneyFlowSummary income={2000} expenses={2000} />
         </ChangeTimeFrame>
 
         <LineGraph
@@ -44,13 +47,13 @@ function Dashboard() {
           datasets={[
             {
               label: "Income",
-              data: moneyByDate.overallCashFlow(timeFrame.dates),
+              data: income,
               backgroundColor: "#306030",
               borderColor: "#306030",
             },
             {
               label: "Spending",
-              data: moneyByDate.overallCashFlow(timeFrame.dates),
+              data: expenses,
               backgroundColor: "#fd5240",
               borderColor: "#fd5240",
             },

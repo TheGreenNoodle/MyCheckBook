@@ -13,16 +13,16 @@ function Block({ name, moneyAmount }) {
   );
 }
 
-function MoneyFlowSummary() {
+function MoneyFlowSummary({ income, expenses }) {
   return (
     <div className={`${styles["box"]} ${styles["box--moneyFlow"]} `}>
-      <Block name="Income" moneyAmount={2000} isIncome={true} />
+      <Block name="Income" moneyAmount={income} isIncome={true} />
       <hr className={`${styles["line"]}`} />
-      <Block name="Expenses" moneyAmount={2000} isIncome={false} />
+      <Block name="Expenses" moneyAmount={expenses} isIncome={false} />
       <hr className={`${styles["line"]}`} />
       <Block
         name="Return"
-        moneyAmount={2000}
+        moneyAmount={income - expenses}
         isIncome={true}
         isNetProfit={true}
       />
