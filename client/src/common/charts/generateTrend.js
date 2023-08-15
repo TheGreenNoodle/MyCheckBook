@@ -1,58 +1,75 @@
-// takes in an array of objects. This array holds objects that contain dates and a cash amount. EX: [{date: cash}, {date: cash}, {date: cash}]. The dates are in order from earliest to latest. This function finds the sum of all of these dates cash values and sets the current indexes key value equal to all of the previous dates values before it. It also adds what the current dates value was before it was redeclared to this sum.
+class generateTrend {
+  #combinedArrays;
+  #endOfArrays;
 
-// sum = cashOne + cashTwo;
-// EX[{date: cashOne}, {date: cashTwo}, {currentDate: sum + cashThree}]
+  constructor(dataset) {
+    // private
+    this.#combinedArrays = [];
+    this.#endOfArrays = {};
 
-// create as a class obj
-
-// want to have data be x and cash be y. Y is the current value at the date plus all prev values.
-
-function generateTrend(dataset) {
-  // concat all objects arrays into one long array
-  // save end points of each array in a object so that later on they can be sliced back to there original sizes and returned to there respective datasets
-  let combineArrays = [];
-  let endOfArrays = {};
-
-  // console.log(dataset);
-  // console.log("---------------------------");
-  for (let [index, object] of dataset.entries()) {
-    combineArrays = combineArrays.concat(object.data);
-    endOfArrays[index] = object.data.length;
+    // public
+    this.dataset = dataset;
   }
 
-  // add x and y to them
-  let sum = 0;
-  for (let [index, obj] of combineArrays.entries()) {
-    let datasetIndex = 0;
-    // adds the current dates value to an overall sum
+  // private
 
-    if (endOfArrays[datasetIndex] === index) {
-      sum = 0;
-      datasetIndex++;
-    }
-
-    // object.assign maybe
-    sum += obj["cash"];
-    obj["x"] = obj["date"];
-    obj["y"] = Math.round(sum * 100) / 100;
-  }
-
-  // separate them out again back into there respective objects.
-  for (let endOfArray = 0; endOfArray < combineArrays.length; endOfArray++) {
-    let startOfArray,
-      datasetIndex = 0;
-
-    if (endOfArrays[datasetIndex] === endOfArray) {
-      dataset[datasetIndex].data = combineArrays.slice(
-        startOfArray,
-        endOfArray
-      );
-
-      startOfArray = endOfArray;
+  // combines all of the datasets datasets.data arrays into one array. This is done so that addCords() dose not need a double nested loop to iterate through all of dataset[0].data and then dataset[1].data. Now it can just run through it all in one go instead of needing to iterate to the next dataset.
+  #combineArrays() {
+    for (let [index, object] of this.dataset.entries()) {
+      this.#combinedArrays = this.#combinedArrays.concat(object.data);
+      this.#endOfArrays[index] = object.data.length;
     }
   }
 
-  return dataset;
+  // add x and y so line chart can display the data
+  // also sums up all of the previous cash values up to current index so that there is an upward trend in the data. This is done to show growth or decay on the line chart.
+
+  // input = [{date: "07/02/23", cash: 20}, {date: "07/03/23", cash: 22}]
+  // output:
+  // [{date: "07/02/23", cash: 20, x: "07/02/23", y: 20},
+  // {date: "07/03/23", cash: 22, x: "07/02/23", y: 44}]
+  #addCords() {
+    let sum = 0;
+    for (let [index, obj] of this.#combinedArrays.entries()) {
+      let datasetIndex = 0;
+
+      if (this.#endOfArrays[datasetIndex] === index) {
+        sum = 0;
+        datasetIndex++;
+      }
+
+      sum += obj["cash"];
+      obj["x"] = obj["date"];
+      obj["y"] = Math.round(sum * 100) / 100;
+    }
+  }
+
+  // puts arrays back into there original datasets.data
+  #separateArrays() {
+    for (let end = 0; end < this.#combinedArrays.length; end++) {
+      let start,
+        datasetIndex = 0;
+
+      if (this.#endOfArrays[datasetIndex] === end) {
+        this.dataset[datasetIndex].data = this.#combinedArrays.slice(
+          start,
+          end
+        );
+
+        start = end;
+      }
+    }
+  }
+
+  // public
+
+  generateTrend() {
+    this.#combineArrays();
+    this.#addCords();
+    this.#separateArrays();
+
+    return this.dataset;
+  }
 }
 
 export { generateTrend };

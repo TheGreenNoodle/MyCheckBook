@@ -26,7 +26,6 @@ function Dashboard() {
   // remove
   const moneyByDate = new createFakeData();
 
-  // console.log(moneyByDate.cashFlow(timeFrame.dates, 1, 100));
   return (
     <>
       <div className={`${styles[`layout`]} ${styles["layout--sectionOne"]}`}>
@@ -45,13 +44,13 @@ function Dashboard() {
           datasets={[
             {
               label: "Income",
-              data: moneyByDate.cashFlow(timeFrame.dates, 1, 100),
+              data: moneyByDate.overallCashFlow(timeFrame.dates),
               backgroundColor: "#306030",
               borderColor: "#306030",
             },
             {
               label: "Spending",
-              data: moneyByDate.cashFlow(timeFrame.dates, 1, 100),
+              data: moneyByDate.overallCashFlow(timeFrame.dates),
               backgroundColor: "#fd5240",
               borderColor: "#fd5240",
             },

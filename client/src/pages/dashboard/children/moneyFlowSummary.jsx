@@ -3,20 +3,10 @@ import styles from "../layout.module.css";
 
 // {isIncome ? ${styles["box--green"]} : ${styles["box--red"]} }
 
-function Block({ name, moneyAmount, isIncome, isNetProfit }) {
+function Block({ name, moneyAmount }) {
   return (
     <div
-      className={`${styles["box"]}  ${styles["box--moneyFlow"]} ${
-        styles["box--moneyFlow__block"]
-      } ${
-        isNetProfit
-          ? isIncome
-            ? styles["box--green"]
-            : styles["box--red"]
-          : isIncome
-          ? styles["box--green"]
-          : styles["box--red"]
-      }`}>
+      className={`${styles["box"]}  ${styles["box--moneyFlow"]} ${styles["box--moneyFlow__block"]} `}>
       <h3>{name}</h3>
       <p>${moneyAmount}</p>
     </div>
@@ -31,7 +21,7 @@ function MoneyFlowSummary() {
       <Block name="Expenses" moneyAmount={2000} isIncome={false} />
       <hr className={`${styles["line"]}`} />
       <Block
-        name="Profit"
+        name="Return"
         moneyAmount={2000}
         isIncome={true}
         isNetProfit={true}

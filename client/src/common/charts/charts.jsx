@@ -40,12 +40,10 @@ Chart.register(
 );
 
 // wrapper to allow responsive graphs
-function Wrapper({ children, hasBackground }) {
+function Wrapper({ children }) {
   return (
     <div
-      className={`${chart["makeResponsive"]} ${
-        hasBackground ? chart["makeResponsive--white"] : null
-      }`}>
+      className={`${chart["makeResponsive"]} ${chart["makeResponsive--white"]}`}>
       {children}
     </div>
   );
@@ -59,13 +57,12 @@ function LineGraph({ labels, datasets, titles }) {
     titles: titles,
   });
 
-  datasets = generateTrend(datasets);
+  const trend = new generateTrend(datasets);
+
+  datasets = trend.generateTrend();
   return (
-    <Wrapper hasBackground={true}>
+    <Wrapper>
       <Line
-        onClick={() => {
-          console.log(datasets);
-        }}
         options={{
           maintainAspectRatio: false,
           spanGaps: true,
