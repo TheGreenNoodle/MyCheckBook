@@ -2,20 +2,24 @@ class generateTrend {
   #combinedArrays;
   #endOfArrays;
 
-  constructor(dataset) {
+  constructor(datasets) {
     // private
     this.#combinedArrays = [];
     this.#endOfArrays = {};
 
     // public
-    this.dataset = dataset;
+    this.datasets = datasets;
   }
 
   // private
 
-  // combines all of the datasets datasets.data arrays into one array. This is done so that addCords() dose not need a double nested loop to iterate through all of dataset[0].data and then dataset[1].data. Now it can just run through it all in one go instead of needing to iterate to the next dataset.
+  // combines all of the datasets.data arrays into one array. This is done so that addCords() dose not need a double nested loop to iterate through all of datasets[i].data and so on. Now it can just run through it all in one go instead of needing to iterate to the next datasets index.
+
+  // endOfArrays holds the end position of each array so that they can be later separated back out in separateArrays().
+  // Example:
+  //endOfArrays = {dataSetIndex: {current indexes .data array end position in combinedArrays} }
   #combineArrays() {
-    for (let [index, object] of this.dataset.entries()) {
+    for (let [index, object] of this.datasets.entries()) {
       this.#combinedArrays = this.#combinedArrays.concat(object.data);
       this.#endOfArrays[index] = object.data.length;
     }
@@ -31,11 +35,11 @@ class generateTrend {
   #addCords() {
     let sum = 0;
     for (let [index, obj] of this.#combinedArrays.entries()) {
-      let datasetIndex = 0;
+      let datasetsIndex = 0;
 
-      if (this.#endOfArrays[datasetIndex] === index) {
+      if (this.#endOfArrays[datasetsIndex] === index) {
         sum = 0;
-        datasetIndex++;
+        datasetsIndex++;
       }
 
       sum += obj["cash"];
@@ -45,18 +49,29 @@ class generateTrend {
   }
 
   // puts arrays back into there original datasets.data
-  #separateArrays() {
-    for (let end = 0; end < this.#combinedArrays.length; end++) {
-      let start,
-        datasetIndex = 0;
 
-      if (this.#endOfArrays[datasetIndex] === end) {
-        this.dataset[datasetIndex].data = this.#combinedArrays.slice(
-          start,
-          end
+  // how it works
+  // datasets is an array of objects
+  // endOfArrays holds datasets indexes as keys
+  // the value of those keys is the end position of that indexes .data array inside of combinedArrays
+  // endOfArrays[currentDatasetsIndex] gets the end position of the .data array in combinedArrays and sees if it equals the endOfCurrentArray.
+  // if it dose it .slices combinedArrays and sets the current .data array equal to that sliced value.
+  #separateArrays() {
+    for (
+      let endOfCurrentArray = 0;
+      endOfCurrentArray < this.#combinedArrays.length;
+      endOfCurrentArray++
+    ) {
+      let startOfCurrentArray,
+        currentDatasetsIndex = 0;
+
+      if (this.#endOfArrays[currentDatasetsIndex] === endOfCurrentArray) {
+        this.datasets[currentDatasetsIndex].data = this.#combinedArrays.slice(
+          startOfCurrentArray,
+          endOfCurrentArray
         );
 
-        start = end;
+        startOfCurrentArray = endOfCurrentArray;
       }
     }
   }
@@ -68,7 +83,7 @@ class generateTrend {
     this.#addCords();
     this.#separateArrays();
 
-    return this.dataset;
+    return this.datasets;
   }
 }
 

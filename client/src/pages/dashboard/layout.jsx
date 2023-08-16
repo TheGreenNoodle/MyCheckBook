@@ -34,7 +34,7 @@ function Dashboard() {
       <div className={`${styles[`layout`]} ${styles["layout--sectionOne"]}`}>
         {/* MoneyFlowSummary is wrapped because ChangeTimeFrames dropdown menu needs to display over the top of it. ChangeTimeFrame can be wrapped around components and all of it`s children will positioned underneath the dropdown menu. */}
         <ChangeTimeFrame setTimeFrame={setTimeFrame}>
-          <MoneyFlowSummary income={2000} expenses={2000} />
+          <MoneyFlowSummary income={income} expenses={expenses} />
         </ChangeTimeFrame>
 
         <LineGraph

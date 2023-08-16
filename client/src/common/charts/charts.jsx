@@ -59,6 +59,7 @@ function LineGraph({ labels, datasets, titles }) {
 
   const trend = new generateTrend(datasets);
 
+  // use a useReducer instead because it is bad practice to mutate a prop.
   datasets = trend.generateTrend();
   return (
     <Wrapper>
