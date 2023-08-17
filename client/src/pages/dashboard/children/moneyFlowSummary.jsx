@@ -14,12 +14,11 @@ function Block({ name, moneyAmount }) {
 }
 
 function MoneyFlowSummary({ income, expenses }) {
-  console.log(income);
   return (
     <div className={`${styles["box"]} ${styles["box--moneyFlow"]} `}>
-      <Block name="Income" moneyAmount={1800} isIncome={true} />
+      <Block name="Income" moneyAmount={income} isIncome={true} />
       <hr className={`${styles["line"]}`} />
-      <Block name="Expenses" moneyAmount={200} isIncome={false} />
+      <Block name="Expenses" moneyAmount={expenses} isIncome={false} />
       <hr className={`${styles["line"]}`} />
       <Block
         name="Return"
