@@ -12,8 +12,7 @@ import { MoneyFlowSummary } from "./children/moneyFlowSummary";
 import { LineGraph, PieGraph } from "../../common/charts/charts";
 
 // testing remove
-import { createFakeData } from "../../common/utility/createFakeData";
-import { generateTrend } from "../../common/charts/generateTrend";
+import { createFakeData } from "../../common/utility/testing/createFakeData";
 
 // css
 import styles from "./layout.module.css";
@@ -34,7 +33,7 @@ function Dashboard() {
       <div className={`${styles[`layout`]} ${styles["layout--sectionOne"]}`}>
         {/* MoneyFlowSummary is wrapped because ChangeTimeFrames dropdown menu needs to display over the top of it. ChangeTimeFrame can be wrapped around components and all of it`s children will positioned underneath the dropdown menu. */}
         <ChangeTimeFrame setTimeFrame={setTimeFrame}>
-          <MoneyFlowSummary income={2000} expenses={510} />
+          <MoneyFlowSummary income={2000} expenses={151} />
         </ChangeTimeFrame>
 
         <LineGraph
