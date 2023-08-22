@@ -12,7 +12,7 @@ import { MoneyFlowSummary } from "./children/moneyFlowSummary";
 import { LineGraph, PieGraph } from "../../common/charts/charts";
 
 // testing remove
-import { createFakeData } from "../../common/utility/testing/createFakeData";
+import { createFakeData } from "../../common/utility/createFakeData";
 
 // css
 import styles from "./layout.module.css";

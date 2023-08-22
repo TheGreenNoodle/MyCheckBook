@@ -13,7 +13,7 @@ function createArrayOfDates(daysBack) {
   let date = new DateBuilder();
 
   for (let i = daysBack; i !== 0; i--) {
-    output.push(date.currDate);
+    output.push(date.getCurrDate());
 
     date.decrementDay();
 

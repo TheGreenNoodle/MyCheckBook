@@ -13,8 +13,6 @@ class DateBuilder {
     this.month = month;
     this.day = day;
     this.fullYear = fullYear;
-    this.halfYear = fullYear.toString().slice(2);
-    this.currDate = `${month}/${day}/${this.halfYear}`;
   }
 
   decrementMonth() {
@@ -25,7 +23,18 @@ class DateBuilder {
   }
   decrementYear() {
     this.fullYear--;
-    this.halfYear = this.fullYear.toString().slice(2);
+  }
+
+  // decides if the day or month is not double digit and it adds a 0 on the front of those strings if they aren't
+  getCurrDate() {
+    let month = this.month;
+    let day = this.day;
+
+    if (this.month < 10) month = `0${month}`;
+
+    if (this.day < 10) day = `0${day}`;
+
+    return `${month}/${day}/${this.fullYear}`;
   }
 
   resetMonth() {
