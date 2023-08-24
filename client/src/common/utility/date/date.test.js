@@ -3,6 +3,10 @@ import "@testing-library/jest-dom";
 import { createArrayOfDates } from "./createArrayOfDates";
 import { DateBuilder } from "./dateBuilder";
 
+// API for working with dates and times
+import moment from "moment";
+
+// needs refactoring
 describe("createArrayOfDates", () => {
   // need a better test to make sure dates decrease in order
   test("decreases year correctly", () => {
@@ -25,36 +29,81 @@ describe("createArrayOfDates", () => {
 
 // needs refactoring
 describe("dateBuilder", () => {
-  const time = new Date();
-  class currentDate {
+  const date = new Date();
+  class mockDateBuilder {
     constructor(
-      month = time.getMonth() + 1,
-      day = time.getDate(),
-      fullYear = time.getFullYear()
+      month = date.getMonth() + 1,
+      day = date.getDate(),
+      fullYear = date.getFullYear()
     ) {
       this.month = month;
       this.day = day;
+      this.fullYear = fullYear;
       this.fullDate = `${month}/${day}/${fullYear}`;
     }
 
-    makeDayDoubleDigit() {
-      this.day = `0${this.day}`;
+    #setCurrDate() {
+      this.fullDate = `${this.month}/${this.day}/${this.fullYear}`;
     }
+    getCurrDate() {
+      if (this.month < 10) this.month = `0${this.month}`;
+      if (this.day < 10) this.day = `0${this.day}`;
+      this.#setCurrDate();
 
-    makeMonthDoubleDigit() {
-      this.month = `0${this.month}`;
+      return this.fullDate;
     }
   }
 
-  test("date is in MM/DD/YYYY format", () => {});
+  test("date is in MM/DD/YYYY format", () => {
+    const productionBuilder = new DateBuilder();
+
+    expect(
+      moment(productionBuilder.getCurrDate(), "MM-DD-YYYY").isValid()
+    ).toBe(true);
+  });
+
   test("starts on current date", () => {
-    const date = new DateBuilder();
+    const productionBuilder = new DateBuilder();
+    const mockBuilder = new mockDateBuilder();
 
-    const curr = new currentDate();
+    expect(productionBuilder.getCurrDate()).toEqual(mockBuilder.getCurrDate());
+  });
 
-    if (curr.month < 10) curr.makeMonthDoubleDigit();
-    if (curr.day < 10) curr.makeDayDoubleDigit();
+  test("when day or month is less than 10 a zero is added to the front of the value", () => {
+    const mockBuilder = new mockDateBuilder(6, 5, 2023);
+    const productionBuilder = new DateBuilder(6, 5, 2023);
 
-    expect(date.getCurrDate()).toEqual(curr.fullDate);
+    expect(productionBuilder.getCurrDate()).toEqual(mockBuilder.getCurrDate());
+  });
+
+  test("helper methods update parameters as intended", () => {
+    const originalValues = {
+      month: 6,
+      day: 5,
+      fullYear: 2023,
+    };
+    const productionBuilder = new DateBuilder(6, 5, 2023);
+
+    productionBuilder.decrementMonth();
+    expect(originalValues.month - 1 === productionBuilder.month).toBe(true);
+
+    productionBuilder.decrementDay();
+    expect(originalValues.day - 1 === productionBuilder.day).toBe(true);
+
+    productionBuilder.decrementYear();
+    expect(originalValues.fullYear - 1 === productionBuilder.fullYear).toBe(
+      true
+    );
+
+    productionBuilder.resetMonth();
+    expect(productionBuilder.month).toEqual(12);
+
+    productionBuilder.setDayToEndOfMonth();
+    expect(productionBuilder.day).toEqual(
+      moment(
+        `${productionBuilder.fullYear}-${productionBuilder.month}`,
+        "YYYY-MM"
+      ).daysInMonth()
+    );
   });
 });

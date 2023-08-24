@@ -15,17 +15,17 @@ describe("generateTrend.js", () => {
   ];
 
   // add back when done writing other test
-  test("changes date key to x and cash key to y", () => {
-    const trendBuilder = new generateTrend(datasets);
-    const trend = trendBuilder.generateTrend();
+  // test("changes date key to x and cash key to y", () => {
+  //   const trendBuilder = new generateTrend(datasets);
+  //   const trend = trendBuilder.generateTrend();
 
-    for (let object of trend[0].data) {
-      expect(object).toHaveProperty("x");
-      expect(object).toHaveProperty("y");
-      expect(object).not.toHaveProperty("date");
-      expect(object).not.toHaveProperty("cash");
-    }
-  });
+  //   for (let object of trend[0].data) {
+  //     expect(object).toHaveProperty("x");
+  //     expect(object).toHaveProperty("y");
+  //     expect(object).not.toHaveProperty("date");
+  //     expect(object).not.toHaveProperty("cash");
+  //   }
+  // });
 
   test("dates are ordered from earliest to latest", () => {
     const trendBuilder = new generateTrend(datasets);

@@ -31,7 +31,6 @@ class DateBuilder {
     let day = this.day;
 
     if (this.month < 10) month = `0${month}`;
-
     if (this.day < 10) day = `0${day}`;
 
     return `${month}/${day}/${this.fullYear}`;
