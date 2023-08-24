@@ -43,16 +43,17 @@ Chart.register(
 );
 
 // wrapper to allow responsive graphs
-function Wrapper({ children }) {
+function Wrapper({ ariaLabel, children }) {
   return (
     <div
+      aria-label={ariaLabel}
       className={`${chart["makeResponsive"]} ${chart["makeResponsive--white"]}`}>
       {children}
     </div>
   );
 }
 
-function LineGraph({ labels, datasets, titles }) {
+function LineGraph({ labels, datasets, titles, ariaLabel }) {
   // throws an error if a parameter is undefined
   UndefinedParam({
     labels: labels,
@@ -65,7 +66,7 @@ function LineGraph({ labels, datasets, titles }) {
   datasets = trend.generateTrend();
 
   return (
-    <Wrapper>
+    <Wrapper ariaLabel={ariaLabel}>
       <Line
         options={{
           maintainAspectRatio: false,
@@ -87,12 +88,12 @@ function LineGraph({ labels, datasets, titles }) {
   );
 }
 
-function PieGraph({ labels, titles, currency, data }) {
+function PieGraph({ labels, titles, currency, data, ariaLabel }) {
   // throws an error if a parameter is undefined
   UndefinedParam({ labels: labels, data: data });
 
   return (
-    <Wrapper>
+    <Wrapper ariaLabel={ariaLabel}>
       <Pie
         options={{
           maintainAspectRatio: false,

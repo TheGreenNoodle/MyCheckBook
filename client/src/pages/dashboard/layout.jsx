@@ -37,6 +37,7 @@ function Dashboard() {
         </ChangeTimeFrame>
 
         <LineGraph
+          ariaLabel="Income vs Spending line chart"
           titles={{
             main: "Income vs Spending",
             xAxis: timeFrame.name,

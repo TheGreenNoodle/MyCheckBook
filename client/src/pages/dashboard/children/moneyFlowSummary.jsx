@@ -15,11 +15,15 @@ function Block({ name, moneyAmount }) {
 
 function MoneyFlowSummary({ income, expenses }) {
   return (
-    <div className={`${styles["box"]} ${styles["box--moneyFlow"]} `}>
+    <div
+      aria-label="Money Flow Summary"
+      className={`${styles["box"]} ${styles["box--moneyFlow"]} `}>
       <Block name="Income" moneyAmount={income} isIncome={true} />
       <hr className={`${styles["line"]}`} />
+
       <Block name="Expenses" moneyAmount={expenses} isIncome={false} />
       <hr className={`${styles["line"]}`} />
+
       <Block
         name="Return"
         moneyAmount={income - expenses}

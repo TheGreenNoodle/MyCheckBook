@@ -33,6 +33,7 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
   return (
     <div className={`${styles[`changeTimeFrame`]}`}>
       <button
+        aria-label="Change time frame dropdown"
         className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}
         onClick={() => {
           setToggled(!toggled);
@@ -40,6 +41,7 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
         <h3 className={`${styles["box--dropdown__header"]}`}>
           {menuHeaderText}
         </h3>
+
         <img
           className={`${styles["box--dropdown__icon"]}`}
           onError={({ currentTarget }) => {
@@ -59,6 +61,7 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
             return (
               <li key={uuidv4()}>
                 <button
+                  aria-label={keyName}
                   onClick={(e) => {
                     const keyName = e.target.value;
                     setMenuHeaderText(keyName);
@@ -73,7 +76,7 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
           })}
         </ul>
 
-        {/* elements that are overladed */}
+        {/* elements that are overladed by changeTimeFrames menu */}
         {children}
       </div>
     </div>
