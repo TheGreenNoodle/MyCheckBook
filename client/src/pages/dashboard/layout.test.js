@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { screen, render, prettyDOM, logRoles } from "@testing-library/react";
 
 // so canvas works properly in the testing environment
-import "canvas";
+import "jest-canvas-mock";
 
 // components
 import Layout from "./layout";
