@@ -49,3 +49,5 @@ describe("generateTrend.js", () => {
     }
   });
 });
+
+// test chart.js line and pie graph somehow

@@ -1,14 +1,22 @@
+// react utility
+import { useReducer } from "react";
+
 // css
 import styles from "../layout.module.css";
 
-// {isIncome ? ${styles["box--green"]} : ${styles["box--red"]} }
-
 function Block({ name, moneyAmount }) {
+  function setToZero() {
+    return 0;
+  }
+
+  const [state, dispatch] = useReducer(setToZero, moneyAmount);
+  if (typeof state !== "number" || isNaN(state)) dispatch();
+
   return (
     <div
       className={`${styles["box"]}  ${styles["box--moneyFlow"]} ${styles["box--moneyFlow__block"]} `}>
       <h3>{name}</h3>
-      <p>${moneyAmount}</p>
+      <p>${state}</p>
     </div>
   );
 }
