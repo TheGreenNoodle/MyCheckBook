@@ -8,7 +8,7 @@ class generateTrend {
     this.#endOfArrays = {};
 
     // public
-    this.datasets = datasets;
+    this.datasets = structuredClone(datasets);
   }
 
   // private

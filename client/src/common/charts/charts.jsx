@@ -62,8 +62,9 @@ function LineGraph({ labels, datasets, titles, ariaLabel }) {
   });
 
   const trend = new generateTrend(datasets);
-  // use a useReducer instead because it is bad practice to mutate a prop.
-  datasets = trend.generateTrend();
+  const datasetsCopy = trend.generateTrend();
+
+  console.log(datasetsCopy);
 
   return (
     <Wrapper ariaLabel={ariaLabel}>
