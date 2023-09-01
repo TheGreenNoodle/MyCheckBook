@@ -1,6 +1,7 @@
 class generateTrend {
   #combinedArrays;
   #endOfArrays;
+  #datasets;
 
   constructor(datasets) {
     // private
@@ -8,7 +9,7 @@ class generateTrend {
     this.#endOfArrays = {};
 
     // public
-    this.datasets = structuredClone(datasets);
+    this.#datasets = structuredClone(datasets);
   }
 
   // private
@@ -19,7 +20,7 @@ class generateTrend {
   // Example:
   //endOfArrays = {dataSetIndex: {current indexes .data array end position in combinedArrays} }
   #combineArrays() {
-    for (let [index, object] of this.datasets.entries()) {
+    for (let [index, object] of this.#datasets.entries()) {
       this.#combinedArrays = this.#combinedArrays.concat(object.data);
       this.#endOfArrays[index] = object.data.length;
     }
@@ -45,6 +46,9 @@ class generateTrend {
       sum += obj["cash"];
       obj["x"] = obj["date"];
       obj["y"] = Math.round(sum * 100) / 100;
+
+      delete obj["date"];
+      delete obj["cash"];
     }
   }
 
@@ -66,7 +70,7 @@ class generateTrend {
         currentDatasetsIndex = 0;
 
       if (this.#endOfArrays[currentDatasetsIndex] === endOfCurrentArray) {
-        this.datasets[currentDatasetsIndex].data = this.#combinedArrays.slice(
+        this.#datasets[currentDatasetsIndex].data = this.#combinedArrays.slice(
           startOfCurrentArray,
           endOfCurrentArray
         );
@@ -77,13 +81,16 @@ class generateTrend {
   }
 
   // public
-
   generateTrend() {
     this.#combineArrays();
     this.#addCords();
     this.#separateArrays();
 
-    return this.datasets;
+    return this.#datasets;
+    // return new Promise((resolve) => {
+    //   resolve(this.#datasets);
+    //   // setTimeout(() => {}, 2000);
+    // });
   }
 }
 

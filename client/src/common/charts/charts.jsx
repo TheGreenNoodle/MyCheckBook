@@ -1,5 +1,5 @@
 // react utility
-import { useReducer } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 // chartJS
 import {
@@ -43,7 +43,11 @@ Chart.register(
 );
 
 // wrapper to allow responsive graphs
-function Wrapper({ ariaLabel, children }) {
+function Wrapper({ ariaLabel, children, isLoading }) {
+  // add loader here
+  if (isLoading) {
+    return <h1>Loading</h1>;
+  }
   return (
     <div
       aria-label={ariaLabel}
@@ -61,13 +65,25 @@ function LineGraph({ labels, datasets, titles, ariaLabel }) {
     titles: titles,
   });
 
+  const [isLoading, setIsLoading] = useState(true);
   const trend = new generateTrend(datasets);
-  const datasetsCopy = trend.generateTrend();
 
-  console.log(datasetsCopy);
+  // console.log(datasets);
+  // console.log("-------------------");
+  // console.log(data);
+  let data;
+  async function asyncCall() {
+    console.log("calling");
+    data = await trend.generateTrend();
+    console.log(data);
+    setIsLoading(false);
+    // Expected output: "resolved"
+  }
+  asyncCall();
+  datasets = data;
 
   return (
-    <Wrapper ariaLabel={ariaLabel}>
+    <Wrapper ariaLabel={ariaLabel} isLoading={isLoading}>
       <Line
         options={{
           maintainAspectRatio: false,
