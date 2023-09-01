@@ -1,5 +1,5 @@
 // react utility
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 // utility
 import { createArrayOfDates } from "../../common/utility/date/createArrayOfDates";
@@ -16,7 +16,6 @@ import { createFakeData } from "../../common/utility/createFakeData";
 
 // css
 import styles from "./layout.module.css";
-import { Simulate } from "react-dom/test-utils";
 
 function Dashboard() {
   const [timeFrame, setTimeFrame] = useState({
@@ -25,9 +24,18 @@ function Dashboard() {
   });
 
   // remove
-  const fakeData = new createFakeData();
-  const income = fakeData.overallCashFlow(timeFrame.dates);
-  const expenses = fakeData.overallCashFlow(timeFrame.dates);
+  const fakeData = useMemo(() => {
+    return new createFakeData();
+  }, []);
+
+  const income = useMemo(
+    () => fakeData.overallCashFlow(timeFrame.dates),
+    [fakeData, timeFrame.dates]
+  );
+  const expenses = useMemo(
+    () => fakeData.overallCashFlow(timeFrame.dates),
+    [fakeData, timeFrame.dates]
+  );
 
   // sums up all cash key values in an array of objects
   function findSum(array) {
@@ -44,12 +52,12 @@ function Dashboard() {
     expenses: findSum(expenses),
   });
 
-  // useMemo(() => {
-  //   setTotals({
-  //     income: findSum(income),
-  //     expenses: findSum(expenses),
-  //   });
-  // }, [income, expenses]);
+  useMemo(() => {
+    setTotals({
+      income: findSum(income),
+      expenses: findSum(expenses),
+    });
+  }, [income, expenses]);
 
   return (
     <>

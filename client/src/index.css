@@ -36,6 +36,7 @@ h3 {
 p,
 button {
   font-size: calc(15px + 0.390625vw);
+  font-weight: 500;
 }
 a {
   text-decoration: none;
