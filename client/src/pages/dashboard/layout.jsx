@@ -1,5 +1,5 @@
 // react utility
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 // utility
 import { createArrayOfDates } from "../../common/utility/date/createArrayOfDates";
@@ -16,6 +16,7 @@ import { createFakeData } from "../../common/utility/createFakeData";
 
 // css
 import styles from "./layout.module.css";
+import { Simulate } from "react-dom/test-utils";
 
 function Dashboard() {
   const [timeFrame, setTimeFrame] = useState({
@@ -24,16 +25,38 @@ function Dashboard() {
   });
 
   // remove
-  const moneyByDate = new createFakeData();
-  const income = moneyByDate.overallCashFlow(timeFrame.dates);
-  const expenses = moneyByDate.overallCashFlow(timeFrame.dates);
+  const fakeData = new createFakeData();
+  const income = fakeData.overallCashFlow(timeFrame.dates);
+  const expenses = fakeData.overallCashFlow(timeFrame.dates);
+
+  // sums up all cash key values in an array of objects
+  function findSum(array) {
+    let sum = 0;
+    for (let element of array) {
+      sum += element["cash"];
+    }
+    sum = Math.round(sum * 100) / 100;
+    return sum;
+  }
+
+  const [totals, setTotals] = useState({
+    income: findSum(income),
+    expenses: findSum(expenses),
+  });
+
+  // useMemo(() => {
+  //   setTotals({
+  //     income: findSum(income),
+  //     expenses: findSum(expenses),
+  //   });
+  // }, [income, expenses]);
 
   return (
     <>
       <div className={`${styles[`layout`]} ${styles["layout--sectionOne"]}`}>
         {/* MoneyFlowSummary is wrapped because ChangeTimeFrames dropdown menu needs to display over the top of it. ChangeTimeFrame can be wrapped around components and all of it`s children will positioned underneath the dropdown menu. */}
         <ChangeTimeFrame setTimeFrame={setTimeFrame}>
-          <MoneyFlowSummary income={2000} expenses={151} />
+          <MoneyFlowSummary totals={totals} />
         </ChangeTimeFrame>
 
         <LineGraph

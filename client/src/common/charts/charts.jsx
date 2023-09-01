@@ -1,5 +1,5 @@
 // react utility
-import { useCallback, useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 
 // chartJS
 import {
@@ -66,21 +66,22 @@ function LineGraph({ labels, datasets, titles, ariaLabel }) {
   });
 
   const [isLoading, setIsLoading] = useState(true);
-  const trend = new generateTrend(datasets);
+  const [chartData, setChartData] = useState({
+    datasets: [],
+    labels: labels,
+  });
 
-  // console.log(datasets);
-  // console.log("-------------------");
-  // console.log(data);
-  let data;
-  async function asyncCall() {
-    console.log("calling");
-    data = await trend.generateTrend();
-    console.log(data);
+  useMemo(() => {
+    const trend = new generateTrend(datasets);
+    setIsLoading(true);
+
+    setChartData({
+      datasets: trend.generateTrend(),
+      labels: labels,
+    });
+
     setIsLoading(false);
-    // Expected output: "resolved"
-  }
-  asyncCall();
-  datasets = data;
+  }, [datasets, labels]);
 
   return (
     <Wrapper ariaLabel={ariaLabel} isLoading={isLoading}>
@@ -99,7 +100,7 @@ function LineGraph({ labels, datasets, titles, ariaLabel }) {
             y: { title: { display: true, text: titles.yAxis } },
           },
         }}
-        data={{ labels, datasets }}
+        data={chartData}
       />
     </Wrapper>
   );

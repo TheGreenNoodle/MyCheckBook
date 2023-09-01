@@ -1,16 +1,18 @@
 // react utility
-import { useReducer } from "react";
+import { useReducer, useMemo } from "react";
 
 // css
 import styles from "../layout.module.css";
 
 function Block({ name, moneyAmount }) {
-  function setToZero() {
-    return 0;
+  function roundUp(state) {
+    return Math.round(state * 100) / 100;
   }
 
-  const [state, dispatch] = useReducer(setToZero, moneyAmount);
-  if (typeof state !== "number" || isNaN(state)) dispatch();
+  const [state, dispatch] = useReducer(roundUp, moneyAmount);
+  useMemo(() => {
+    dispatch();
+  }, []);
 
   return (
     <div
@@ -21,23 +23,18 @@ function Block({ name, moneyAmount }) {
   );
 }
 
-function MoneyFlowSummary({ income, expenses }) {
+function MoneyFlowSummary({ totals }) {
   return (
     <div
       aria-label="Money Flow Summary"
       className={`${styles["box"]} ${styles["box--moneyFlow"]} `}>
-      <Block name="Income" moneyAmount={income} isIncome={true} />
+      <Block name="Income" moneyAmount={totals.income} isIncome={true} />
       <hr className={`${styles["line"]}`} />
 
-      <Block name="Expenses" moneyAmount={expenses} isIncome={false} />
+      <Block name="Expenses" moneyAmount={totals.expenses} isIncome={false} />
       <hr className={`${styles["line"]}`} />
 
-      <Block
-        name="Return"
-        moneyAmount={income - expenses}
-        isIncome={true}
-        isNetProfit={true}
-      />
+      <Block name="Return" moneyAmount={totals.income - totals.expenses} />
     </div>
   );
 }
