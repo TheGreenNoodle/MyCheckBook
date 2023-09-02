@@ -7,14 +7,14 @@ function Block({ name, moneyAmount }) {
     currency: "USD",
   });
 
-  let output = currencyFormat.format(0);
-  if (moneyAmount) output = currencyFormat.format(moneyAmount);
+  let currency = currencyFormat.format(0);
+  if (moneyAmount) currency = currencyFormat.format(moneyAmount);
 
   return (
     <div
       className={`${styles["box"]}  ${styles["box--moneyFlow"]} ${styles["box--moneyFlow__block"]} `}>
       <h3>{name}</h3>
-      <p>{output}</p>
+      <p>{currency}</p>
     </div>
   );
 }
