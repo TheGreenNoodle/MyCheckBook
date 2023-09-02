@@ -85,10 +85,6 @@ class generateTrend {
     this.#separateArrays();
 
     return this.#datasets;
-    // return new Promise((resolve) => {
-    //   resolve(this.#datasets);
-    //   // setTimeout(() => {}, 2000);
-    // });
   }
 }
 

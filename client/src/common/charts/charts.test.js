@@ -31,7 +31,7 @@ describe("generateTrend.js", () => {
     const trend = trendBuilder.generateTrend();
 
     for (let [index, object] of trend[0].data.entries()) {
-      expect(object.date).toEqual(datasets[0].data[index].date);
+      expect(object.x).toEqual(datasets[0].data[index].date);
     }
   });
 
@@ -40,8 +40,8 @@ describe("generateTrend.js", () => {
     const trend = trendBuilder.generateTrend();
 
     let cashSum = 0;
-    for (let object of trend[0].data) {
-      cashSum += object.cash;
+    for (let [index, object] of trend[0].data.entries()) {
+      cashSum += datasets[0].data[index].cash;
       cashSum = Math.round(cashSum * 100) / 100;
 
       expect(object.y).toEqual(cashSum);

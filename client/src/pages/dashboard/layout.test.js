@@ -71,14 +71,14 @@ describe("moneyFlowSummary", () => {
     expect(lines.length).toEqual(2);
 
     // paragraph tags where money out put is
-    const paragraphs = screen.getAllByText("$0");
+    const paragraphs = screen.getAllByText("$0.00");
     expect(paragraphs.length).toEqual(3);
   });
 
   test("expense is the difference between income and spending", () => {
-    render(<MoneyFlowSummary income={40} expenses={24} />);
+    render(<MoneyFlowSummary totals={{ income: 45.48, expenses: 23 }} />);
 
-    const moneyReturn = screen.getByText("$16");
+    const moneyReturn = screen.getByText("$22.48");
     expect(moneyReturn).toBeInTheDocument();
   });
 });

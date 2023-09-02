@@ -1,5 +1,5 @@
 // react utility
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 // utility
 import { createArrayOfDates } from "../../common/utility/date/createArrayOfDates";
@@ -23,22 +23,20 @@ function Dashboard() {
     dates: createArrayOfDates(30),
   });
 
-  // remove
-  const fakeData = useMemo(() => {
+  // remove when real data can be used
+  const fakeDataBuilder = useMemo(() => {
     return new createFakeData();
   }, []);
 
-  const income = useMemo(
-    () => fakeData.overallCashFlow(timeFrame.dates),
-    [fakeData, timeFrame.dates]
-  );
-  const expenses = useMemo(
-    () => fakeData.overallCashFlow(timeFrame.dates),
-    [fakeData, timeFrame.dates]
-  );
+  const fakeData = useMemo(() => {
+    return {
+      income: fakeDataBuilder.overallCashFlow(timeFrame.dates),
+      expenses: fakeDataBuilder.overallCashFlow(timeFrame.dates),
+    };
+  }, [fakeDataBuilder, timeFrame.dates]);
 
   // sums up all cash key values in an array of objects
-  function findSum(array) {
+  function findCashSum(array) {
     let sum = 0;
     for (let element of array) {
       sum += element["cash"];
@@ -48,16 +46,16 @@ function Dashboard() {
   }
 
   const [totals, setTotals] = useState({
-    income: findSum(income),
-    expenses: findSum(expenses),
+    income: findCashSum(fakeData.income),
+    expenses: findCashSum(fakeData.expenses),
   });
 
   useMemo(() => {
     setTotals({
-      income: findSum(income),
-      expenses: findSum(expenses),
+      income: findCashSum(fakeData.income),
+      expenses: findCashSum(fakeData.expenses),
     });
-  }, [income, expenses]);
+  }, [fakeData.income, fakeData.expenses]);
 
   return (
     <>
@@ -78,13 +76,13 @@ function Dashboard() {
           datasets={[
             {
               label: "Income",
-              data: income,
+              data: fakeData.income,
               backgroundColor: "#306030",
               borderColor: "#306030",
             },
             {
               label: "Spending",
-              data: expenses,
+              data: fakeData.expenses,
               backgroundColor: "#fd5240",
               borderColor: "#fd5240",
             },
