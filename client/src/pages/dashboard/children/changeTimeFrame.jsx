@@ -3,6 +3,7 @@ import { useState, useRef } from "react";
 
 // utility
 import { createArrayOfDates } from "../../../common/utility/date/createArrayOfDates";
+import Toggle from "../../../common/utility/toggle";
 
 // create a unique key
 import { v4 as uuidv4 } from "uuid";
@@ -20,24 +21,15 @@ const timeFrames = {
 // used to change the time frame of data in dashboard
 // can wrap around other components and have the dropdown menu overlay them
 function ChangeTimeFrame({ setTimeFrame, children }) {
-  const [toggled, setToggled] = useState(false);
   const [menuHeaderText, setMenuHeaderText] = useState("Past 30 Days");
 
-  const menu = useRef(null);
-
-  if (menu.current)
-    toggled
-      ? menu.current.classList.remove(`${styles["display--none"]}`)
-      : menu.current.classList.add(`${styles["display--none"]}`);
-
+  const dropdown__btn = useRef(null);
   return (
     <div className={`${styles[`changeTimeFrame`]}`}>
       <button
         aria-label="Change time frame dropdown"
-        className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}
-        onClick={() => {
-          setToggled(!toggled);
-        }}>
+        ref={dropdown__btn}
+        className={`${styles["box"]} ${styles["box--dropdown__btn"]}`}>
         <h3 className={`${styles["box--dropdown__header"]}`}>
           {menuHeaderText}
         </h3>
@@ -54,27 +46,32 @@ function ChangeTimeFrame({ setTimeFrame, children }) {
       </button>
 
       <div className={`${styles["changeTimeFrame__menuAndChildren"]}`}>
-        <ul
-          ref={menu}
-          className={`${styles["box"]} ${styles["box--dropdown__menu"]} ${styles["display--none"]}`}>
-          {Object.keys(timeFrames).map((keyName) => {
-            return (
-              <li key={uuidv4()}>
-                <button
-                  aria-label={keyName}
-                  onClick={(e) => {
-                    const keyName = e.target.value;
-                    setMenuHeaderText(keyName);
-                    setTimeFrame({ name: keyName, dates: timeFrames[keyName] });
-                  }}
-                  className={`${styles["box"]} ${styles["box--dropdown__menu__btn"]}`}
-                  value={keyName}>
-                  {keyName}
-                </button>
-              </li>
-            );
-          })}
-        </ul>
+        <Toggle toggler={dropdown__btn.current} initialState={false}>
+          <ul
+            aria-label="Time frame options"
+            className={`${styles["box"]} ${styles["box--dropdown__menu"]}`}>
+            {Object.keys(timeFrames).map((keyName) => {
+              return (
+                <li key={uuidv4()}>
+                  <button
+                    aria-label={keyName}
+                    onClick={(e) => {
+                      const keyName = e.target.value;
+                      setMenuHeaderText(keyName);
+                      setTimeFrame({
+                        name: keyName,
+                        dates: timeFrames[keyName],
+                      });
+                    }}
+                    className={`${styles["box"]} ${styles["box--dropdown__menu__btn"]}`}
+                    value={keyName}>
+                    {keyName}
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </Toggle>
 
         {/* elements that are overladed by changeTimeFrames menu */}
         {children}

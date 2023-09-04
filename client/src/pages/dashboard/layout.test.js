@@ -35,11 +35,39 @@ describe("layout", () => {
 });
 
 describe("changeTimeFrame", () => {
-  test("all elements render in DOM", () => {
-    render(<ChangeTimeFrame />);
+  test("all elements render in DOM and everything starts at its default state", () => {
+    render(
+      <ChangeTimeFrame>
+        <h1>Test Child Element</h1>
+      </ChangeTimeFrame>
+    );
+
+    const dropdownBtn = screen.getByRole("button", {
+      name: "Change time frame dropdown",
+    });
+    expect(dropdownBtn).toBeInTheDocument();
+
+    const defaultDropDownHeader = screen.getByRole("heading", {
+      name: "Past 30 Days",
+    });
+    expect(defaultDropDownHeader).toBeInTheDocument();
+
+    const dropDownArrow = screen.getByRole("img", { name: "dropdown-icon" });
+    expect(dropDownArrow).toBeInTheDocument();
+
+    const childElement = screen.getByRole("heading", {
+      name: "Test Child Element",
+    });
+    expect(childElement).toBeInTheDocument();
+
+    // need to remove element from the dom tree
+    const optionsList = screen.queryByRole("list", {
+      name: "Time frame options",
+    });
+    expect(optionsList).not.toBeInTheDocument();
   });
 
-  test("clicking the drop-down displays and removes the menu", () => {
+  test("clicking the drop-down displays the menu and removes the child underneath. Clicking again dose the opposite.", () => {
     render(<ChangeTimeFrame />);
   });
 

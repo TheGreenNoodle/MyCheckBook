@@ -14,6 +14,7 @@ describe("generateTrend.js", () => {
     },
   ];
 
+  // add toMatchObject
   test("changes date key to x and cash key to y", () => {
     const trendBuilder = new generateTrend(datasets);
     const trend = trendBuilder.generateTrend();

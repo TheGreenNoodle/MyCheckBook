@@ -86,11 +86,6 @@
 /* dropdown__menu group end */
 /* dropdown group end */
 
-/* display block */
-.display--none {
-  display: none;
-}
-
 /* making wrappers responsive */
 @media (max-width: 900px) {
   .layout--sectionOne {
